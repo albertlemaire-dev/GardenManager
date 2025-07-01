@@ -1,0 +1,42 @@
+[
+    {
+        "id": "pd001",
+        "name": "Aphids",
+        "type": "pest",
+        "description": "Small, sap-sucking insects that cluster on new growth. They can be green, black, yellow, or pink.",
+        "symptoms": "Yellowed or distorted leaves, sticky 'honeydew' on leaves, sooty mold growth, stunted plant growth.",
+        "plants_affected": ["Most vegetables", "Roses", "Tomatoes", "Peppers"],
+        "organic_treatment": "Spray with a strong jet of water to dislodge them. Introduce beneficial insects like ladybugs or lacewings. Apply insecticidal soap or neem oil.",
+        "chemical_treatment": "Pyrethrin-based insecticides. Use sparingly to avoid harming beneficial insects."
+    },
+    {
+        "id": "pd002",
+        "name": "Powdery Mildew",
+        "type": "disease",
+        "description": "A common fungal disease that appears as white or gray powdery spots on leaves and stems.",
+        "symptoms": "White, powdery patches on the upper surfaces of leaves. Leaves may yellow and dry out. Flowers can be distorted.",
+        "plants_affected": ["Squash", "Cucumbers", "Roses", "Salvia"],
+        "organic_treatment": "Improve air circulation. Remove and destroy affected leaves. Spray with a solution of baking soda (1 tbsp per gallon of water) or use a milk spray (1 part milk to 9 parts water). Neem oil is also effective.",
+        "chemical_treatment": "Fungicides containing sulfur or potassium bicarbonate. Apply according to label directions."
+    },
+    {
+        "id": "pd003",
+        "name": "Spider Mites",
+        "type": "pest",
+        "description": "Tiny, spider-like pests that are difficult to see with the naked eye. They thrive in hot, dry conditions.",
+        "symptoms": "Fine webbing on the plant, tiny yellow or white spots on leaves (stippling), leaves may turn yellow or bronze and drop off.",
+        "plants_affected": ["Tomatoes", "Beans", "Many houseplants", "Salvia"],
+        "organic_treatment": "Increase humidity around plants. Use a strong spray of water to knock them off. Apply insecticidal soap or neem oil, ensuring to cover the undersides of leaves.",
+        "chemical_treatment": "Miticide sprays. Be aware that many spider mite populations have developed resistance to common pesticides."
+    },
+    {
+        "id": "pd004",
+        "name": "Root Rot",
+        "type": "disease",
+        "description": "A serious fungal disease that attacks the roots of plants, typically caused by overwatering and poor drainage.",
+        "symptoms": "Stunted growth, yellowing or wilting leaves, mushy, brown, and decaying roots. The plant may die suddenly.",
+        "plants_affected": ["Most container plants", "Salvia", "Anything in poorly drained soil"],
+        "organic_treatment": "Prevention is key. Ensure well-draining soil and avoid overwatering. For potted plants, repot into fresh, sterile soil, trimming away any affected roots. For garden plants, improve soil drainage by adding organic matter.",
+        "chemical_treatment": "Fungicide drenches can be used, but they are often a last resort and may not save a severely affected plant."
+    }
+] 

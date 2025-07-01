@@ -1,0 +1,3095 @@
+[
+    {
+        "id": 1,
+        "commonName": "African Sky Salvia",
+        "botanicalName": "Salvia 'African Sky'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 30
+        },
+        "facts": "A magnet for hummingbirds, especially in late summer.",
+        "family": "Lamiaceae",
+        "origin": "Africa",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "8-10",
+        "pestsDiseases": "Generally pest-free, watch for root rot in wet soil.",
+        "growingTip": "Prefers full sun and tolerates drought once established.",
+        "bloomColor": "Soft Blue",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Drought Tolerant",
+            "Heat Lover"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 2,
+        "commonName": "Amante Salvia",
+        "botanicalName": "Salvia 'Amante'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 100,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A consistent bloomer that provides color for months.",
+        "family": "Lamiaceae",
+        "origin": "Hybrid",
+        "soilType": "Well-drained Loam",
+        "soilPH": "Slightly Acidic to Neutral",
+        "hardinessZone": "8-10",
+        "pestsDiseases": "Resistant to most pests; can get powdery mildew.",
+        "growingTip": "Deadhead regularly to encourage continuous blooming.",
+        "bloomColor": "Magenta-Purple",
+        "bloomSeason": "Late Spring to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Long Blooming",
+            "Vigorous"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 3,
+        "commonName": "Black and Blue Salvia",
+        "botanicalName": "Salvia guaranitica 'Black and Blue'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 4,
+            "fertilize": 21
+        },
+        "facts": "The black calyces (the part that holds the flower) give this plant its dramatic look.",
+        "family": "Lamiaceae",
+        "origin": "South America",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "7-10",
+        "pestsDiseases": "Generally pest-free.",
+        "growingTip": "Spreads by runners, so give it room to grow or plant in a container.",
+        "bloomColor": "Deep Blue with Black Calyx",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Dramatic Color",
+            "Part Shade Tolerant"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 4,
+        "commonName": "Ember's Wish Salvia",
+        "botanicalName": "Salvia 'Ember's Wish'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 100,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "Part of the 'Wish' series of Salvias, known for their vibrant colors and long bloom season.",
+        "family": "Lamiaceae",
+        "origin": "Hybrid",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "9-11",
+        "pestsDiseases": "Generally robust and healthy.",
+        "growingTip": "A portion of the sales from this plant supports the Make-A-Wish foundation.",
+        "bloomColor": "Coral-Orange",
+        "bloomSeason": "Spring to Frost",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Extended Season",
+            "Coral Color"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 5,
+        "commonName": "Friendship Sage",
+        "botanicalName": "Salvia 'Amistad'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 25
+        },
+        "facts": "A sterile hybrid, meaning it won't self-sow in the garden.",
+        "family": "Lamiaceae",
+        "origin": "Hybrid",
+        "soilType": "Moist, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "8-10",
+        "pestsDiseases": "Very few problems.",
+        "growingTip": "Can be pruned back hard in spring to encourage bushier growth.",
+        "bloomColor": "Deep Purple",
+        "bloomSeason": "Summer to Frost",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Almost Black Flowers",
+            "Heat Tolerant"
+        ],
+        "rarity": "rare"
+    },
+    {
+        "id": 6,
+        "commonName": "Ignition Sunrise Salvia",
+        "botanicalName": "Salvia 'Vibe Ignition Sunrise'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            10,
+            20
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A compact variety perfect for containers and smaller garden spaces.",
+        "family": "Lamiaceae",
+        "origin": "Hybrid",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "7-11",
+        "pestsDiseases": "Good disease resistance.",
+        "growingTip": "Attracts hummingbirds and butterflies with its bicolored flowers.",
+        "bloomColor": "Pink and Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Bicolor",
+            "Compact"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 7,
+        "commonName": "Mystic Spires Blue Salvia",
+        "botanicalName": "Salvia 'Mystic Spires Blue'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 110,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "A workhorse in the garden, producing flower spikes all season long and is deer resistant.",
+        "family": "Lamiaceae",
+        "origin": "Hybrid",
+        "soilType": "Well-drained Loam",
+        "soilPH": "Neutral",
+        "hardinessZone": "7-10",
+        "pestsDiseases": "Very low maintenance and trouble-free.",
+        "growingTip": "Cut back after flowering to promote a second flush of blooms.",
+        "bloomColor": "Deep Blue",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Reliable Bloomer",
+            "Deer Resistant"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 8,
+        "commonName": "Winifred Gilman Sage",
+        "botanicalName": "Salvia clevelandii 'Winifred Gilman'",
+        "genus": "Salvia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            21,
+            40
+        ],
+        "daysToMaturity": 365,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 14,
+            "fertilize": 0
+        },
+        "facts": "A California native. The entire plant is highly aromatic, releasing a classic sage scent.",
+        "family": "Lamiaceae",
+        "origin": "California, USA",
+        "soilType": "Dry, Rocky, Well-drained",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "8-11",
+        "pestsDiseases": "Very drought tolerant; susceptible to root rot in wet conditions.",
+        "growingTip": "Requires excellent drainage and minimal summer water once established.",
+        "bloomColor": "Deep Blue-Violet",
+        "bloomSeason": "Spring to Summer",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "California Native",
+            "Fragrant Foliage"
+        ],
+        "rarity": "native"
+    },
+    {
+        "id": 9,
+        "commonName": "Hummingbird Mint",
+        "botanicalName": "Agastache 'Morello'",
+        "genus": "Agastache",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            14,
+            30
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [
+                130,
+                131
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "The leaves have a pleasant anise or licorice scent and are drought tolerant.",
+        "family": "Lamiaceae",
+        "origin": "North America, Asia",
+        "soilType": "Well-drained",
+        "soilPH": "6.0-8.0",
+        "hardinessZone": "5-9",
+        "pestsDiseases": "Resistant to deer; watch for powdery mildew in humid conditions.",
+        "growingTip": "Do not over-fertilize, as it can lead to weak stems.",
+        "bloomColor": "Bright Magenta",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Fragrant",
+            "Edible Flowers"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 10,
+        "commonName": "Little Adder Hummingbird Mint",
+        "botanicalName": "Agastache 'Little Adder'",
+        "genus": "Agastache",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            30
+        ],
+        "daysToMaturity": 80,
+        "companions": {
+            "friends": [
+                130,
+                131
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "A more compact version of traditional Agastache, great for smaller gardens.",
+        "family": "Lamiaceae",
+        "origin": "Hybrid",
+        "soilType": "Lean, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "6-9",
+        "pestsDiseases": "Good air circulation helps prevent fungal issues.",
+        "growingTip": "Perfect for front-of-border planting or in containers.",
+        "bloomColor": "Violet-Purple",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Compact",
+            "Anise Scent"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 11,
+        "commonName": "Lobelia 'Crystal Palace'",
+        "botanicalName": "Lobelia erinus 'Crystal Palace'",
+        "genus": "Lobelia",
+        "category": "Pollinator",
+        "type": "Annual",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            10,
+            20
+        ],
+        "daysToMaturity": 60,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "Known for its strikingly deep blue flowers and contrasting bronze-tinted leaves.",
+        "family": "Campanulaceae",
+        "origin": "South Africa",
+        "soilType": "Rich, Moist, Well-drained",
+        "soilPH": "Slightly Acidic",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Virtually pest and disease free.",
+        "growingTip": "Prefers cooler weather; cut back in mid-summer if leggy to encourage new growth.",
+        "bloomColor": "Deep Blue",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Bronze Foliage",
+            "Cool Weather"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 12,
+        "commonName": "Lobelia 'Sapphire Blue'",
+        "botanicalName": "Lobelia erinus 'Sapphire Blue'",
+        "genus": "Lobelia",
+        "category": "Pollinator",
+        "type": "Annual",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            10,
+            20
+        ],
+        "daysToMaturity": 60,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "A trailing lobelia variety perfect for hanging baskets and containers, featuring bright blue flowers with distinctive white eyes.",
+        "family": "Campanulaceae",
+        "origin": "South Africa",
+        "soilType": "Rich, Moist, Well-drained",
+        "soilPH": "Slightly Acidic",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Virtually pest and disease free.",
+        "growingTip": "Excellent for hanging baskets. Cut back in mid-summer if leggy to encourage new growth and continued blooming.",
+        "bloomColor": "Bright Blue with White Eye",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Trailing",
+            "White Eye",
+            "Hanging Baskets",
+            "Cool Weather"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 13,
+        "commonName": "Regatta Rose Lobelia",
+        "botanicalName": "Lobelia erinus 'Regatta Rose'",
+        "genus": "Lobelia",
+        "category": "Pollinator",
+        "type": "Annual",
+        "light": "Part Shade",
+        "germinationDays": [
+            10,
+            20
+        ],
+        "daysToMaturity": 60,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "A unique pink-flowered lobelia that performs well in partial shade, offering a softer color palette for shaded gardens and containers.",
+        "family": "Campanulaceae",
+        "origin": "South Africa",
+        "soilType": "Rich, Moist, Well-drained",
+        "soilPH": "Slightly Acidic",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Virtually pest and disease free.",
+        "growingTip": "Excellent for shade gardens and containers. Benefits from consistent moisture and protection from hot afternoon sun.",
+        "bloomColor": "Rose Pink with White Center",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Pink Color",
+            "Shade Tolerant",
+            "Unique Color",
+            "Cool Weather"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 14,
+        "commonName": "Holy Basil",
+        "botanicalName": "Ocimum tenuiflorum (Tulsi)",
+        "genus": "Ocimum",
+        "category": "Herb",
+        "type": "Annual Herb",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 75,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "Also known as Tulsi, this sacred basil is revered in Hindu tradition and prized for its medicinal properties and spiritual significance.",
+        "family": "Lamiaceae",
+        "origin": "India",
+        "soilType": "Well-drained, Rich",
+        "soilPH": "Neutral",
+        "hardinessZone": "10-11 (grown as annual elsewhere)",
+        "pestsDiseases": "Generally pest-free. May get aphids or spider mites in dry conditions.",
+        "growingTip": "Pinch flowers to keep leaves tender. Harvest leaves regularly for tea and medicinal use.",
+        "bloomColor": "Pink to Purple",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Sacred Plant",
+            "Medicinal",
+            "Edible",
+            "Spiritual"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 15,
+        "commonName": "Thai Basil",
+        "botanicalName": "Ocimum basilicum var. thyrsiflora",
+        "genus": "Ocimum",
+        "bloomColor": "Purple Flowers",
+        "bloomSeason": "Summer",
+        "light": "Full Sun",
+        "type": "Annual Herb",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Culinary",
+            "Anise Flavor"
+        ],
+        "rarity": "common",
+        "category": "Herb"
+    },
+    {
+        "id": 16,
+        "commonName": "Wild Magic Basil",
+        "botanicalName": "Ocimum 'Wild Magic'",
+        "genus": "Ocimum",
+        "category": "Herb",
+        "type": "Annual Herb",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 70,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "An ornamental basil variety with dark purple stems and flowers, creating a magical appearance in herb gardens and borders.",
+        "family": "Lamiaceae",
+        "origin": "Hybrid",
+        "soilType": "Well-drained, Rich",
+        "soilPH": "Neutral",
+        "hardinessZone": "10-11 (grown as annual elsewhere)",
+        "pestsDiseases": "Generally pest-free. May get aphids or spider mites in dry conditions.",
+        "growingTip": "Excellent for ornamental use. Pinch flowers to maintain bushy growth or let bloom for pollinator attraction.",
+        "bloomColor": "Purple Flowers",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Ornamental",
+            "Fragrant",
+            "Purple Stems",
+            "Magical Appearance"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 17,
+        "commonName": "Celosia",
+        "botanicalName": "Celosia argentea",
+        "genus": "Celosia",
+        "category": "Flower",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            8,
+            14
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "Also known as cockscomb, these flowers have unique, intricate shapes.",
+        "family": "Amaranthaceae",
+        "origin": "Tropics",
+        "soilType": "Humusy, Well-drained",
+        "soilPH": "Slightly Acidic to Neutral",
+        "hardinessZone": "2-11 (grown as annual)",
+        "pestsDiseases": "Susceptible to root rot in wet soils.",
+        "growingTip": "Thrives in heat and humidity. Great as a dried flower.",
+        "bloomColor": "Red, Yellow, Pink",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Heat Lover",
+            "Colorful"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 18,
+        "commonName": "Dwarf Ground Morning Glory",
+        "botanicalName": "Convolvulus sabatius 'Compactus'",
+        "genus": "Convolvulus",
+        "category": "Pollinator",
+        "type": "Groundcover",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 30
+        },
+        "facts": "A compact groundcover morning glory that produces masses of blue-violet trumpet flowers without the aggressive spreading habit.",
+        "family": "Convolvulaceae",
+        "origin": "Mediterranean",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "8-11",
+        "pestsDiseases": "Generally pest-free. May get spider mites in hot, dry conditions.",
+        "growingTip": "Excellent for rock gardens, containers, and slopes. Drought tolerant once established.",
+        "bloomColor": "Blue-Violet",
+        "bloomSeason": "Spring to Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Groundcover",
+            "Compact",
+            "Non-Invasive",
+            "Drought Tolerant"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 19,
+        "commonName": "Ground Morning Glory",
+        "botanicalName": "Convolvulus sabatius",
+        "genus": "Convolvulus",
+        "category": "Pollinator",
+        "type": "Groundcover",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 30
+        },
+        "facts": "A trailing perennial morning glory that forms a carpet of blue trumpet flowers, perfect for slopes and rock gardens.",
+        "family": "Convolvulaceae",
+        "origin": "Mediterranean",
+        "soilType": "Well-drained, Rocky",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "8-11",
+        "pestsDiseases": "Generally pest-free. May get spider mites in hot, dry conditions.",
+        "growingTip": "Excellent for erosion control on slopes. Trim back in late winter to maintain shape.",
+        "bloomColor": "Blue",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Groundcover",
+            "Long Season",
+            "Erosion Control",
+            "Rock Garden"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 20,
+        "commonName": "Bright Lights Cosmos",
+        "botanicalName": "Cosmos sulphureus 'Bright Lights'",
+        "genus": "Cosmos",
+        "category": "Flower",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 70,
+        "companions": {
+            "friends": [
+                110
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "An easy-to-grow flower that attracts many pollinators.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Average, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Aphids, Aster yellows.",
+        "growingTip": "Tolerates poor soil. Do not over-fertilize, which produces foliage at the expense of flowers.",
+        "bloomColor": "Orange, Yellow, Red",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Easy Care",
+            "Colorful Mix"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 21,
+        "commonName": "Cosmos 'Rubenza'",
+        "botanicalName": "Cosmos bipinnatus 'Rubenza'",
+        "genus": "Cosmos",
+        "bloomColor": "Deep Ruby Red",
+        "bloomSeason": "Summer to Fall",
+        "light": "Full Sun",
+        "type": "Annual",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Rich Color",
+            "Cut Flower"
+        ],
+        "rarity": "special",
+        "category": "Flower"
+    },
+    {
+        "id": 22,
+        "commonName": "Illumination Delphinium",
+        "botanicalName": "Delphinium 'Illumination Series'",
+        "genus": "Delphinium",
+        "category": "Flower",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            28
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A stunning delphinium series with unique bicolored flowers featuring lavender petals with bright yellow centers, creating an illuminated effect.",
+        "family": "Ranunculaceae",
+        "origin": "Europe",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "Neutral to Slightly Alkaline",
+        "hardinessZone": "3-7",
+        "pestsDiseases": "Crown rot, powdery mildew, aphids. Needs good air circulation.",
+        "growingTip": "Requires cool, moist conditions. Cut back after first bloom for second flowering. Stake tall varieties.",
+        "bloomColor": "Bicolored Lavender and Yellow",
+        "bloomSeason": "Spring to Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Tall Spikes",
+            "Bicolor",
+            "Unique Coloring",
+            "Cool Weather"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 23,
+        "commonName": "Pacific Giant Delphinium",
+        "botanicalName": "Delphinium elatum (Pacific Giant Series)",
+        "genus": "Delphinium",
+        "bloomColor": "Blue, Purple, Lavender, White",
+        "bloomSeason": "Late Spring to Mid Summer",
+        "light": "Full Sun to Part Shade",
+        "type": "Perennial",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Very Tall",
+            "Classic"
+        ],
+        "rarity": "common",
+        "category": "Flower"
+    },
+    {
+        "id": 24,
+        "commonName": "Cheyenne Spirit Coneflower",
+        "botanicalName": "Echinacea 'Cheyenne Spirit'",
+        "genus": "Echinacea",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            10,
+            20
+        ],
+        "daysToMaturity": 365,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "A seed-grown variety that produces a stunning mix of warm colors on every plant.",
+        "family": "Asteraceae",
+        "origin": "North America",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "4-9",
+        "pestsDiseases": "Japanese beetles, leaf spot. Good air circulation is key.",
+        "growingTip": "Drought tolerant once established. Leave seed heads for winter bird feeding.",
+        "bloomColor": "Mix of Red, Orange, Yellow, and Pink",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Color Mix",
+            "Drought Tolerant"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 25,
+        "commonName": "Coneflower 'Magnus'",
+        "botanicalName": "Echinacea purpurea 'Magnus'",
+        "genus": "Echinacea",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            15,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 30
+        },
+        "facts": "A classic purple coneflower with large, rosy-purple petals and prominent dark orange cones that attract butterflies and birds.",
+        "family": "Asteraceae",
+        "origin": "North America",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral to Slightly Alkaline",
+        "hardinessZone": "3-9",
+        "pestsDiseases": "Generally disease resistant. May get powdery mildew in humid conditions.",
+        "growingTip": "Deadhead spent flowers to encourage more blooms, or leave for birds to enjoy the seeds.",
+        "bloomColor": "Rosy Purple with Dark Cone",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Classic Purple",
+            "Bird Food",
+            "Native",
+            "Drought Tolerant"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 26,
+        "commonName": "Blanket Flower",
+        "botanicalName": "Gaillardia 'Orange Moon'",
+        "genus": "Gaillardia",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 10,
+            "fertilize": 0
+        },
+        "facts": "Extremely drought and heat tolerant, making it perfect for tough, sunny spots.",
+        "family": "Asteraceae",
+        "origin": "North America",
+        "soilType": "Sandy, Well-drained",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "3-10",
+        "pestsDiseases": "No serious pests. Root rot in heavy, wet soil.",
+        "growingTip": "Thrives on neglect. Deadheading prolongs bloom time.",
+        "bloomColor": "Orange",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Heat Tolerant",
+            "Long Blooming"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 27,
+        "commonName": "Branching Sunflower",
+        "botanicalName": "Helianthus annuus (Branching variety)",
+        "genus": "Helianthus",
+        "category": "Flower",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            10
+        ],
+        "daysToMaturity": 100,
+        "companions": {
+            "friends": [
+                130
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "Produces multiple flowers per stalk, unlike single-stem varieties.",
+        "family": "Asteraceae",
+        "origin": "North America",
+        "soilType": "Well-drained, Adaptable",
+        "soilPH": "Slightly Acidic to Neutral",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Birds and squirrels may eat seeds. Moths can be an issue.",
+        "growingTip": "May require staking if it grows very tall.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Bird Food",
+            "Tall"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 28,
+        "commonName": "Goldeneye",
+        "botanicalName": "Heliomeris multiflora",
+        "genus": "Heliomeris",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            28
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 14,
+            "fertilize": 0
+        },
+        "facts": "A hardy native wildflower that produces masses of bright yellow daisy-like flowers, perfect for xeriscaping and natural gardens.",
+        "family": "Asteraceae",
+        "origin": "Southwestern United States",
+        "soilType": "Sandy, Well-drained",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "4-9",
+        "pestsDiseases": "Very disease resistant. Occasionally bothered by aphids.",
+        "growingTip": "Extremely drought tolerant once established. Cut back in late fall for tidier appearance.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Native",
+            "Drought Tolerant",
+            "Low Maintenance"
+        ],
+        "rarity": "native"
+    },
+    {
+        "id": 29,
+        "commonName": "English Lavender",
+        "botanicalName": "Lavandula angustifolia",
+        "genus": "Lavandula",
+        "category": "Herb",
+        "type": "Perennial Herb",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            28
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 10,
+            "fertilize": 60
+        },
+        "facts": "The most fragrant and cold-hardy lavender variety, prized for its essential oils and culinary uses.",
+        "family": "Lamiaceae",
+        "origin": "Mediterranean",
+        "soilType": "Well-drained, Sandy",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "5-9",
+        "pestsDiseases": "Very pest resistant. Root rot in wet soils is the main concern.",
+        "growingTip": "Prune after flowering to maintain shape. Avoid overwatering and heavy, clay soils.",
+        "bloomColor": "Lavender Blue",
+        "bloomSeason": "Late Spring to Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Fragrant",
+            "Culinary",
+            "Medicinal",
+            "Drought Tolerant"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 30,
+        "commonName": "Lemon Balm",
+        "botanicalName": "Melissa officinalis",
+        "genus": "Melissa",
+        "category": "Herb",
+        "type": "Perennial Herb",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 70,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A vigorous herb in the mint family with a delightful lemon scent, used for teas and natural pest deterrent.",
+        "family": "Lamiaceae",
+        "origin": "Mediterranean",
+        "soilType": "Moist, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "4-9",
+        "pestsDiseases": "Generally pest-free. Can be invasive if not contained.",
+        "growingTip": "Pinch flowers to keep leaves tender. Contains spreading by growing in pots or using barriers.",
+        "bloomColor": "White or Pale Yellow",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Fragrant",
+            "Medicinal",
+            "Self-Sows",
+            "Culinary"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 31,
+        "commonName": "Bee Balm",
+        "botanicalName": "Monarda didyma",
+        "genus": "Monarda",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            10,
+            20
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [
+                110
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 0
+        },
+        "facts": "A member of the mint family, it's a favorite of hummingbirds and bees.",
+        "family": "Lamiaceae",
+        "origin": "Eastern North America",
+        "soilType": "Moist, Rich",
+        "soilPH": "Neutral",
+        "hardinessZone": "4-9",
+        "pestsDiseases": "Prone to powdery mildew; ensure good air circulation.",
+        "growingTip": "Spreads by rhizomes; divide clumps every few years to control spread.",
+        "bloomColor": "Red, Pink, Purple",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Native",
+            "Medicinal Tea"
+        ],
+        "rarity": "native"
+    },
+    {
+        "id": 32,
+        "commonName": "Russian River Monardella",
+        "botanicalName": "Monardella villosa 'Russian River'",
+        "genus": "Monardella",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 14,
+            "fertilize": 0
+        },
+        "facts": "A California native with aromatic foliage and clusters of tubular lavender flowers that attract hummingbirds and butterflies.",
+        "family": "Lamiaceae",
+        "origin": "California",
+        "soilType": "Well-drained, Sandy",
+        "soilPH": "Neutral to Slightly Alkaline",
+        "hardinessZone": "8-10",
+        "pestsDiseases": "Very disease resistant. Avoid overwatering to prevent root rot.",
+        "growingTip": "Extremely drought tolerant once established. Prune lightly after flowering to maintain shape.",
+        "bloomColor": "Lavender",
+        "bloomSeason": "Late Spring to Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "California Native",
+            "Fragrant",
+            "Drought Tolerant"
+        ],
+        "rarity": "native"
+    },
+    {
+        "id": 33,
+        "commonName": "Citrus Mimosa Geranium",
+        "botanicalName": "Pelargonium 'Citrus Mimosa'",
+        "genus": "Pelargonium",
+        "category": "Flower",
+        "type": "Tender Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            10,
+            14
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A scented geranium with delicate, finely-cut foliage that releases a citrus fragrance when touched, producing lovely lavender-pink flowers.",
+        "family": "Geraniaceae",
+        "origin": "South Africa",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "9-11",
+        "pestsDiseases": "Generally pest-free. Watch for aphids and whiteflies in greenhouse conditions.",
+        "growingTip": "Pinch regularly to maintain bushy growth. Bring indoors before first frost in colder climates.",
+        "bloomColor": "Lavender to Pink",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Scented Leaves",
+            "Long Blooming",
+            "Fragrant"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 34,
+        "commonName": "Orange Fizz Geranium",
+        "botanicalName": "Pelargonium 'Orange Fizz'",
+        "genus": "Pelargonium",
+        "category": "Flower",
+        "type": "Tender Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            10,
+            14
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A compact scented geranium with orange-citrus fragrant foliage and delicate pale pink flowers, perfect for containers.",
+        "family": "Geraniaceae",
+        "origin": "South Africa",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "9-11",
+        "pestsDiseases": "Generally pest-free. Watch for aphids and whiteflies in greenhouse conditions.",
+        "growingTip": "Excellent for containers. Pinch to maintain compact shape. Overwinter indoors in cold climates.",
+        "bloomColor": "Pale Pink",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Citrus Scented",
+            "Compact",
+            "Fragrant"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 35,
+        "commonName": "Catherine de la Mare Penstemon",
+        "botanicalName": "Penstemon 'Catherine de la Mare'",
+        "genus": "Penstemon",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            30
+        ],
+        "daysToMaturity": 365,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 10,
+            "fertilize": 0
+        },
+        "facts": "A beautiful hybrid penstemon with tubular lavender-blue flowers that are irresistible to hummingbirds and beneficial insects.",
+        "family": "Plantaginaceae",
+        "origin": "Hybrid (Native Heritage)",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral to Slightly Alkaline",
+        "hardinessZone": "5-9",
+        "pestsDiseases": "Generally disease resistant. Avoid overwatering to prevent root rot.",
+        "growingTip": "Cut back after flowering to encourage second bloom. Very drought tolerant once established.",
+        "bloomColor": "Lavender Blue",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "Drought Tolerant",
+            "Native Heritage",
+            "Long Blooming"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 36,
+        "commonName": "Penstemon 'Electric Blue'",
+        "botanicalName": "Penstemon heterophyllus 'Electric Blue'",
+        "genus": "Penstemon",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            30
+        ],
+        "daysToMaturity": 365,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 10,
+            "fertilize": 0
+        },
+        "facts": "One of the most vibrant and true-blue flowers available.",
+        "family": "Plantaginaceae",
+        "origin": "North America",
+        "soilType": "Gravelly, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "6-9",
+        "pestsDiseases": "Root rot in wet winter soils.",
+        "growingTip": "Needs sharp drainage, especially in winter. Often short-lived but worth it.",
+        "bloomColor": "Electric Blue",
+        "bloomSeason": "Spring to Summer",
+        "pollinatorType": "Hummingbird",
+        "specialFeatures": [
+            "California Native",
+            "Vivid Color"
+        ],
+        "rarity": "native"
+    },
+    {
+        "id": 37,
+        "commonName": "Cherry Brandy Black-eyed Susan",
+        "botanicalName": "Rudbeckia hirta 'Cherry Brandy'",
+        "genus": "Rudbeckia",
+        "category": "Flower",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            10,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "A unique Rudbeckia with stunning deep red blooms instead of the typical yellow.",
+        "family": "Asteraceae",
+        "origin": "North America",
+        "soilType": "Average, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "3-7 (often grown as annual)",
+        "pestsDiseases": "Aphids, powdery mildew.",
+        "growingTip": "Deadhead to prolong blooming, but leave some seeds for birds.",
+        "bloomColor": "Cherry Red with Dark Eye",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Unusual Color",
+            "Heat Tolerant"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 38,
+        "commonName": "Compact Mexican Marigold",
+        "botanicalName": "Tagetes lemmonii 'Compacta'",
+        "genus": "Tagetes",
+        "category": "Flower",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 60,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 30
+        },
+        "facts": "A compact version of the Mexican marigold with intensely fragrant foliage and continuous golden blooms that attract butterflies.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "8-11",
+        "pestsDiseases": "Generally pest-free. May get spider mites in hot, dry conditions.",
+        "growingTip": "Pinch flowers to maintain compact shape. Excellent for containers and borders.",
+        "bloomColor": "Golden Orange",
+        "bloomSeason": "Year-round in warm zones",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Year-round Bloom",
+            "Fragrant",
+            "Compact"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 39,
+        "commonName": "Creeping Thyme",
+        "botanicalName": "Thymus serpyllum",
+        "genus": "Thymus",
+        "category": "Herb",
+        "type": "Groundcover",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 14,
+            "fertilize": 0
+        },
+        "facts": "A low-growing, mat-forming thyme that releases a wonderful fragrance when walked on, perfect for pathways and rock gardens.",
+        "family": "Lamiaceae",
+        "origin": "Europe",
+        "soilType": "Well-drained, Sandy",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "4-8",
+        "pestsDiseases": "Very disease resistant. Root rot in wet soils.",
+        "growingTip": "Extremely drought tolerant. Trim lightly after flowering to maintain dense growth.",
+        "bloomColor": "Pink to Purple",
+        "bloomSeason": "Late Spring to Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Groundcover",
+            "Culinary",
+            "Fragrant",
+            "Walkable"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 40,
+        "commonName": "Tall Verbena",
+        "botanicalName": "Verbena bonariensis",
+        "genus": "Verbena",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            20,
+            30
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "Its tall, airy stems create a see-through effect in the garden, attracting butterflies.",
+        "family": "Verbenaceae",
+        "origin": "South America",
+        "soilType": "Average, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "7-11",
+        "pestsDiseases": "Generally disease and pest free.",
+        "growingTip": "Readily self-seeds, so you'll have new plants each year.",
+        "bloomColor": "Lavender-Purple",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Tall",
+            "Self-Sows",
+            "Airy"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 41,
+        "commonName": "Longleaf Speedwell",
+        "botanicalName": "Veronica longifolia",
+        "genus": "Veronica",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A tall perennial with impressive spikes of blue to purple flowers that provide excellent vertical interest in the garden.",
+        "family": "Plantaginaceae",
+        "origin": "Europe, Asia",
+        "soilType": "Moist, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "4-8",
+        "pestsDiseases": "Generally disease resistant. May get powdery mildew in humid conditions.",
+        "growingTip": "Cut back after first flush of blooms for second flowering. May need staking in windy areas.",
+        "bloomColor": "Blue to Purple",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Tall Spikes",
+            "Cool Color",
+            "Long Blooming"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 42,
+        "commonName": "Spike Speedwell",
+        "botanicalName": "Veronica spicata",
+        "genus": "Veronica",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A reliable, compact perennial with dense spikes of blue-purple flowers that bloom for months, perfect for borders.",
+        "family": "Plantaginaceae",
+        "origin": "Europe",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "3-8",
+        "pestsDiseases": "Very disease resistant. Occasionally bothered by aphids.",
+        "growingTip": "Deadhead spent flowers to encourage continuous blooming. Very low maintenance.",
+        "bloomColor": "Blue-Purple",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Compact",
+            "Reliable",
+            "Long Blooming"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 43,
+        "commonName": "Yellow Yarrow",
+        "botanicalName": "Achillea millefolium",
+        "genus": "Achillea",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            10,
+            14
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 10,
+            "fertilize": 0
+        },
+        "facts": "Attracts beneficial insects like ladybugs and lacewings that prey on pests.",
+        "family": "Asteraceae",
+        "origin": "Europe, Asia, North America",
+        "soilType": "Lean, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "3-9",
+        "pestsDiseases": "Powdery mildew, rust. Can spread aggressively.",
+        "growingTip": "Tolerates poor, dry soils. Cut back after flowering to prevent flopping.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Beneficial Insect",
+        "specialFeatures": [
+            "Beneficial Insects",
+            "Flat Landing Pad",
+            "Drought Tolerant"
+        ],
+        "rarity": "native"
+    },
+    {
+        "id": 44,
+        "commonName": "Pink Pastel Yarrow",
+        "botanicalName": "Achillea millefolium",
+        "genus": "Achillea",
+        "category": "Pollinator",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            10,
+            14
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 10,
+            "fertilize": 0
+        },
+        "facts": "A soft-colored yarrow variety that attracts beneficial insects like ladybugs and lacewings while providing gentle pastel color.",
+        "family": "Asteraceae",
+        "origin": "Europe, Asia, North America",
+        "soilType": "Lean, Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "3-9",
+        "pestsDiseases": "Powdery mildew, rust. Can spread aggressively.",
+        "growingTip": "Tolerates poor, dry soils. Cut back after flowering to prevent flopping and encourage second bloom.",
+        "bloomColor": "Pale Pink",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Beneficial Insect",
+        "specialFeatures": [
+            "Beneficial Insects",
+            "Soft Color",
+            "Long Blooming",
+            "Drought Tolerant"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 45,
+        "commonName": "California Bluebell",
+        "botanicalName": "Phacelia campanularia",
+        "genus": "Phacelia",
+        "category": "Pollinator",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 60,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 0
+        },
+        "facts": "Known as one of the ultimate bee plants, this California native produces intense electric blue flowers that are irresistible to native bees.",
+        "family": "Boraginaceae",
+        "origin": "California",
+        "soilType": "Sandy, Well-drained",
+        "soilPH": "Neutral to Alkaline",
+        "hardinessZone": "9-11 (grown as annual elsewhere)",
+        "pestsDiseases": "Generally pest and disease free.",
+        "growingTip": "Direct sow in fall for spring blooms. Self-seeds readily in suitable climates.",
+        "bloomColor": "Electric Blue",
+        "bloomSeason": "Spring to Summer",
+        "pollinatorType": "Native Bee",
+        "specialFeatures": [
+            "California Native",
+            "Ultimate Bee Plant",
+            "Electric Blue",
+            "Self-Sows"
+        ],
+        "rarity": "native"
+    },
+    {
+        "id": 46,
+        "commonName": "FlowerPower Compact White Osteospermum",
+        "botanicalName": "Osteospermum 'FlowerPower Compact White'",
+        "genus": "Osteospermum",
+        "category": "Flower",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A compact African daisy with pristine white flowers that bloom continuously from spring to fall, perfect for containers and borders.",
+        "family": "Asteraceae",
+        "origin": "South Africa",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral",
+        "hardinessZone": "9-11",
+        "pestsDiseases": "Generally pest-free. May get aphids in greenhouse conditions.",
+        "growingTip": "Deadhead regularly for continuous blooms. Treat as annual in colder climates.",
+        "bloomColor": "White",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Daisy Form",
+            "Compact",
+            "Long Blooming",
+            "Heat Tolerant"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 100,
+        "commonName": "Good Mother Stallard Bean",
+        "botanicalName": "Phaseolus vulgaris 'Good Mother Stallard'",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [
+                140,
+                150
+            ],
+            "foes": [
+                160
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "An excellent dry bean for soups, holding its shape well.",
+        "family": "Fabaceae",
+        "origin": "Central/South America",
+        "soilType": "Fertile, Well-drained Loam",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Mexican bean beetles, bacterial blight.",
+        "growingTip": "Provide a tall, sturdy trellis for this pole bean variety.",
+        "genus": "Phaseolus",
+        "bloomColor": "White",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Heirloom",
+            "Dry Bean",
+            "Pole Type"
+        ],
+        "rarity": "heirloom"
+    },
+    {
+        "id": 101,
+        "commonName": "Rattlesnake Pole Bean",
+        "botanicalName": "Phaseolus vulgaris 'Rattlesnake'",
+        "genus": "Phaseolus",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 75,
+        "companions": {
+            "friends": [
+                140,
+                150
+            ],
+            "foes": [
+                160
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "An heirloom pole bean with distinctive purple-streaked pods that are tender and flavorful when harvested young.",
+        "family": "Fabaceae",
+        "origin": "Central/South America",
+        "soilType": "Fertile, Well-drained Loam",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Mexican bean beetles, bacterial blight.",
+        "growingTip": "Provide tall, sturdy support. Harvest pods when young and tender for best flavor.",
+        "bloomColor": "Purple",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Heirloom",
+            "Purple Pods",
+            "Pole Type",
+            "Distinctive Markings"
+        ],
+        "rarity": "heirloom"
+    },
+    {
+        "id": 102,
+        "commonName": "1500 Year Old Cave Bean",
+        "botanicalName": "Phaseolus vulgaris",
+        "genus": "Phaseolus",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 85,
+        "companions": {
+            "friends": [
+                140,
+                150
+            ],
+            "foes": [
+                160
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "An extraordinarily rare heirloom bean discovered in a cave, representing 1500 years of genetic preservation and cultural heritage.",
+        "family": "Fabaceae",
+        "origin": "Southwestern United States",
+        "soilType": "Fertile, Well-drained Loam",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Mexican bean beetles, bacterial blight.",
+        "growingTip": "Save seeds carefully to preserve this ancient variety. Handle with reverence for its historical significance.",
+        "bloomColor": "White",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Ancient Heirloom",
+            "Historical",
+            "Extremely Rare",
+            "Cultural Heritage"
+        ],
+        "rarity": "rare"
+    },
+    {
+        "id": 103,
+        "commonName": "Blue Lake Bush Bean",
+        "botanicalName": "Phaseolus vulgaris 'Blue Lake Bush'",
+        "genus": "Phaseolus",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 60,
+        "companions": {
+            "friends": [
+                140,
+                150
+            ],
+            "foes": [
+                160
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "A compact bush variety of the famous Blue Lake bean, perfect for small gardens and container growing.",
+        "family": "Fabaceae",
+        "origin": "Central/South America",
+        "soilType": "Fertile, Well-drained Loam",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Mexican bean beetles, bacterial blight.",
+        "growingTip": "No staking required. Harvest regularly to keep plants producing tender pods.",
+        "bloomColor": "White",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Bush Type",
+            "Snap Bean",
+            "Productive",
+            "No Staking"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 104,
+        "commonName": "Blue Lake Pole Bean",
+        "botanicalName": "Phaseolus vulgaris 'Blue Lake Pole'",
+        "genus": "Phaseolus",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 65,
+        "companions": {
+            "friends": [
+                140,
+                150
+            ],
+            "foes": [
+                160
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 21
+        },
+        "facts": "The classic pole bean variety prized for its tender, stringless pods and extended harvest period throughout the summer.",
+        "family": "Fabaceae",
+        "origin": "Central/South America",
+        "soilType": "Fertile, Well-drained Loam",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Mexican bean beetles, bacterial blight.",
+        "growingTip": "Provide sturdy 6-8 foot poles or trellis. Harvest daily to encourage continuous production.",
+        "bloomColor": "White",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Pole Type",
+            "Snap Bean",
+            "Long Harvest",
+            "Stringless"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 105,
+        "commonName": "Purple Hyacinth Bean",
+        "botanicalName": "Lablab purpureus",
+        "genus": "Lablab",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            10,
+            21
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [
+                140,
+                150
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A stunning ornamental bean with purple flowers, purple-tinged leaves, and edible young pods, perfect for arbors and trellises.",
+        "family": "Fabaceae",
+        "origin": "Africa",
+        "soilType": "Well-drained, Average",
+        "soilPH": "6.0-7.5",
+        "hardinessZone": "10-11 (grown as annual elsewhere)",
+        "pestsDiseases": "Generally pest-free. Occasional aphids.",
+        "growingTip": "Provide strong support as vines can reach 10-20 feet. Young pods are edible when harvested small.",
+        "bloomColor": "Purple",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Ornamental",
+            "Edible Pods",
+            "Beautiful Flowers",
+            "Purple Foliage"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 110,
+        "commonName": "Sungold Tomato",
+        "botanicalName": "Solanum lycopersicum 'Sungold'",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            6,
+            14
+        ],
+        "daysToMaturity": 57,
+        "companions": {
+            "friends": [
+                15,
+                150
+            ],
+            "foes": [
+                140
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 14
+        },
+        "facts": "Often considered one of the sweetest cherry tomatoes available.",
+        "family": "Solanaceae",
+        "origin": "South America",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.2-6.8",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Hornworms, early/late blight, blossom end rot.",
+        "growingTip": "Consistent watering is key to prevent cracking and blossom end rot.",
+        "genus": "Solanum",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Cherry Tomato",
+            "Sweet",
+            "Prolific"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 111,
+        "commonName": "Sweet 100 Tomato",
+        "botanicalName": "Solanum lycopersicum 'Sweet 100'",
+        "genus": "Solanum",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            6,
+            14
+        ],
+        "daysToMaturity": 65,
+        "companions": {
+            "friends": [
+                15,
+                150
+            ],
+            "foes": [
+                140
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 14
+        },
+        "facts": "A prolific cherry tomato that produces clusters of 100+ sweet, bite-sized fruits with excellent disease resistance.",
+        "family": "Solanaceae",
+        "origin": "South America",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.2-6.8",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Generally disease resistant. Watch for hornworms and late blight.",
+        "growingTip": "Provide strong support as plants can grow 6+ feet tall. Harvest regularly to encourage production.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Cherry Tomato",
+            "Disease Resistant",
+            "High Yield",
+            "Sweet"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 112,
+        "commonName": "Green Zebra Tomato",
+        "botanicalName": "Solanum lycopersicum 'Green Zebra'",
+        "genus": "Solanum",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            6,
+            14
+        ],
+        "daysToMaturity": 75,
+        "companions": {
+            "friends": [
+                15,
+                150
+            ],
+            "foes": [
+                140
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 14
+        },
+        "facts": "A unique heirloom tomato with green skin striped with yellow when ripe, offering a tangy, slightly tart flavor that's perfect for salads.",
+        "family": "Solanaceae",
+        "origin": "United States",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.2-6.8",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Hornworms, early/late blight, blossom end rot.",
+        "growingTip": "Harvest when fruits have yellow stripes and give slightly to pressure. Great for adding color to salads.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Heirloom",
+            "Green with Stripes",
+            "Tangy Flavor",
+            "Unique Color"
+        ],
+        "rarity": "heirloom"
+    },
+    {
+        "id": 113,
+        "commonName": "Tie Dye Tomato",
+        "botanicalName": "Solanum lycopersicum 'Tie Dye'",
+        "genus": "Solanum",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            6,
+            14
+        ],
+        "daysToMaturity": 80,
+        "companions": {
+            "friends": [
+                15,
+                150
+            ],
+            "foes": [
+                140
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 14
+        },
+        "facts": "A stunning heirloom tomato with multicolored fruits featuring red, yellow, and green streaks that create a tie-dye pattern, with exceptional sweet flavor.",
+        "family": "Solanaceae",
+        "origin": "United States",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.2-6.8",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Hornworms, early/late blight, blossom end rot.",
+        "growingTip": "Harvest when fruits show full color development. Each fruit has a unique pattern - no two are alike!",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Heirloom",
+            "Multicolored",
+            "Unique Pattern",
+            "Sweet Flavor"
+        ],
+        "rarity": "rare"
+    },
+    {
+        "id": 114,
+        "commonName": "Brandywine Tomato",
+        "botanicalName": "Solanum lycopersicum 'Brandywine'",
+        "genus": "Solanum",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            6,
+            14
+        ],
+        "daysToMaturity": 90,
+        "companions": {
+            "friends": [
+                15,
+                150
+            ],
+            "foes": [
+                140
+            ]
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 14
+        },
+        "facts": "A legendary heirloom beefsteak tomato dating to 1885, prized for its exceptional flavor, large size, and pink-red color with outstanding taste.",
+        "family": "Solanaceae",
+        "origin": "United States (Pennsylvania)",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.2-6.8",
+        "hardinessZone": "10-11 (grown as annual)",
+        "pestsDiseases": "Hornworms, early/late blight, blossom end rot. Somewhat disease susceptible.",
+        "growingTip": "Requires strong support due to large fruit size. Allow plenty of time to ripen for best flavor development.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Heirloom",
+            "Beefsteak",
+            "Exceptional Flavor",
+            "Large Size"
+        ],
+        "rarity": "heirloom"
+    },
+    {
+        "id": 120,
+        "commonName": "Heirloom Cutting Mix Lettuce",
+        "botanicalName": "Lactuca sativa",
+        "genus": "Lactuca",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Part Shade",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 45,
+        "companions": {
+            "friends": [
+                110,
+                150
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 14
+        },
+        "facts": "A diverse mix of heirloom lettuce varieties perfect for cut-and-come-again harvesting, providing continuous salad greens throughout the season.",
+        "family": "Asteraceae",
+        "origin": "Mediterranean",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Aphids, slugs, downy mildew. Bolts quickly in hot weather.",
+        "growingTip": "Harvest outer leaves regularly to encourage continued growth. Succession plant every 2 weeks for continuous harvest.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Cut and Come Again",
+            "Mixed Varieties",
+            "Cool Season",
+            "Continuous Harvest"
+        ],
+        "rarity": "heirloom"
+    },
+    {
+        "id": 121,
+        "commonName": "Little Gem Lettuce",
+        "botanicalName": "Lactuca sativa 'Little Gem'",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Part Shade",
+        "germinationDays": [
+            7,
+            10
+        ],
+        "daysToMaturity": 50,
+        "companions": {
+            "friends": [
+                150,
+                100
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 2,
+            "fertilize": 0
+        },
+        "facts": "A small romaine with a crunchy heart.",
+        "family": "Asteraceae",
+        "origin": "Mediterranean",
+        "soilType": "Loose, Well-composted",
+        "soilPH": "6.0-6.8",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Aphids, slugs, downy mildew.",
+        "growingTip": "Grows best in cool weather; provide afternoon shade in summer.",
+        "genus": "Lactuca",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Mini Romaine",
+            "Sweet",
+            "Heat Tolerant"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 122,
+        "commonName": "Flashy Butter Gem Lettuce",
+        "botanicalName": "Lactuca sativa 'Flashy Butter Gem'",
+        "genus": "Lactuca",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Part Shade",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 55,
+        "companions": {
+            "friends": [
+                110,
+                150
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 14
+        },
+        "facts": "A beautiful butterhead lettuce with green leaves edged in red, combining the best of both romaine and butter lettuce characteristics.",
+        "family": "Asteraceae",
+        "origin": "Mediterranean",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Aphids, slugs, downy mildew. Bolts quickly in hot weather.",
+        "growingTip": "Grow in cool weather for best flavor. Succession plant every 2 weeks for continuous harvest.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Red Edges",
+            "Butterhead",
+            "Compact",
+            "Cool Season"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 130,
+        "commonName": "Honeynut Squash",
+        "botanicalName": "Cucurbita moschata 'Honeynut'",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            10
+        ],
+        "daysToMaturity": 85,
+        "companions": {
+            "friends": [
+                100,
+                140,
+                9
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 2,
+            "fertilize": 21
+        },
+        "facts": "Developed at Cornell University, it has about twice the beta-carotene of butternut squash.",
+        "family": "Cucurbitaceae",
+        "origin": "North America",
+        "soilType": "Fertile, Well-drained",
+        "soilPH": "6.0-6.8",
+        "hardinessZone": "3-11",
+        "pestsDiseases": "Squash bugs, vine borers, powdery mildew.",
+        "growingTip": "Hand-pollinate if fruit set is poor to ensure a good harvest.",
+        "genus": "Cucurbita",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Winter Squash",
+            "Sweet",
+            "Mini Butternut"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 131,
+        "commonName": "Burpee's Butterbush Squash",
+        "botanicalName": "Cucurbita pepo 'Butterbush'",
+        "genus": "Cucurbita",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            10
+        ],
+        "daysToMaturity": 50,
+        "companions": {
+            "friends": [
+                100,
+                140
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 2,
+            "fertilize": 21
+        },
+        "facts": "A compact bush-type summer squash perfect for small gardens, producing buttery yellow fruits on space-saving plants.",
+        "family": "Cucurbitaceae",
+        "origin": "North America",
+        "soilType": "Fertile, Well-drained",
+        "soilPH": "6.0-6.8",
+        "hardinessZone": "3-11",
+        "pestsDiseases": "Squash bugs, vine borers, powdery mildew.",
+        "growingTip": "Harvest when fruits are 6-8 inches long for best flavor. Bush type requires no staking or trellising.",
+        "bloomColor": "Yellow",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Summer Squash",
+            "Bush Type",
+            "Compact",
+            "Space Saving"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 140,
+        "commonName": "Bloody Butcher Corn",
+        "botanicalName": "Zea mays 'Bloody Butcher'",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            10
+        ],
+        "daysToMaturity": 100,
+        "companions": {
+            "friends": [
+                100,
+                130
+            ],
+            "foes": [
+                110
+            ]
+        },
+        "care": {
+            "water": 2,
+            "fertilize": 14
+        },
+        "facts": "An old heirloom from the 1840s, great for cornmeal and flour.",
+        "family": "Poaceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Fertile Loam",
+        "soilPH": "6.0-6.8",
+        "hardinessZone": "4-11",
+        "pestsDiseases": "Corn earworm, raccoons.",
+        "growingTip": "Plant in a block of at least 4x4 for successful wind pollination.",
+        "genus": "Zea",
+        "bloomColor": "Green",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Wind",
+        "specialFeatures": [
+            "Heirloom",
+            "Dent Corn",
+            "Red Kernels"
+        ],
+        "rarity": "heirloom"
+    },
+    {
+        "id": 141,
+        "commonName": "Jubilee Corn",
+        "botanicalName": "Zea mays 'Jubilee'",
+        "genus": "Zea",
+        "category": "Vegetable",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            10
+        ],
+        "daysToMaturity": 83,
+        "companions": {
+            "friends": [
+                100,
+                130
+            ],
+            "foes": [
+                110
+            ]
+        },
+        "care": {
+            "water": 2,
+            "fertilize": 14
+        },
+        "facts": "A classic yellow sweet corn variety known for its excellent flavor, tender kernels, and reliable performance in various growing conditions.",
+        "family": "Poaceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Fertile Loam",
+        "soilPH": "6.0-6.8",
+        "hardinessZone": "4-11",
+        "pestsDiseases": "Corn earworm, raccoons, birds.",
+        "growingTip": "Plant in blocks of at least 4x4 for proper wind pollination. Harvest when kernels are milky and sweet.",
+        "bloomColor": "Green",
+        "bloomSeason": "Summer",
+        "pollinatorType": "Wind",
+        "specialFeatures": [
+            "Sweet Corn",
+            "Yellow",
+            "Heat Tolerant",
+            "Classic Variety"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 200,
+        "commonName": "RM Gigi Dahlia",
+        "botanicalName": "Dahlia 'RM Gigi'",
+        "genus": "Dahlia",
+        "category": "Flower",
+        "type": "Perennial Tuber",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A stunning decorative dahlia with large pink blooms that make excellent cut flowers and garden focal points.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "8-11 (lift tubers in colder zones)",
+        "pestsDiseases": "Aphids, spider mites, powdery mildew. Slugs may damage young growth.",
+        "growingTip": "Plant tubers after soil warms to 60°F. Stake tall varieties and deadhead for continuous blooms.",
+        "bloomColor": "Pink",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Decorative",
+            "Cut Flower",
+            "Large Blooms",
+            "Show Quality"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 201,
+        "commonName": "Ka's Penny Lane Dahlia",
+        "botanicalName": "Dahlia 'Ka's Penny Lane'",
+        "genus": "Dahlia",
+        "category": "Flower",
+        "type": "Perennial Tuber",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A beautiful bicolor dahlia with yellow petals edged in pink, creating a stunning two-toned effect perfect for bouquets.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "8-11 (lift tubers in colder zones)",
+        "pestsDiseases": "Aphids, spider mites, powdery mildew. Slugs may damage young growth.",
+        "growingTip": "Plant tubers after soil warms to 60°F. Provide morning sun and afternoon shade in hot climates.",
+        "bloomColor": "Yellow with Pink Edge",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Bicolor",
+            "Cut Flower",
+            "Medium Size",
+            "Unique Coloring"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 202,
+        "commonName": "KA's Mocha Katie Dahlia",
+        "botanicalName": "Dahlia 'KA's Mocha Katie'",
+        "genus": "Dahlia",
+        "category": "Flower",
+        "type": "Perennial Tuber",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A rare dinner plate dahlia with extraordinary bronze-brown coloring that creates dramatic focal points in gardens and arrangements.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "8-11 (lift tubers in colder zones)",
+        "pestsDiseases": "Aphids, spider mites, powdery mildew. Slugs may damage young growth.",
+        "growingTip": "Requires strong staking due to large blooms. Plant in protected area from strong winds.",
+        "bloomColor": "Bronze-Brown",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Unique Color",
+            "Cut Flower",
+            "Dinner Plate",
+            "Rare Variety"
+        ],
+        "rarity": "rare"
+    },
+    {
+        "id": 203,
+        "commonName": "Bloomquist Alan Dahlia",
+        "botanicalName": "Dahlia 'Bloomquist Alan'",
+        "genus": "Dahlia",
+        "category": "Flower",
+        "type": "Perennial Tuber",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A vibrant cactus-type dahlia with spiky red petals that create a dramatic, almost flame-like appearance in the garden.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "8-11 (lift tubers in colder zones)",
+        "pestsDiseases": "Aphids, spider mites, powdery mildew. Slugs may damage young growth.",
+        "growingTip": "Cactus dahlias have pointed petals that can be damaged by wind. Provide shelter and stake well.",
+        "bloomColor": "Red",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Cactus Type",
+            "Cut Flower",
+            "Vibrant",
+            "Spiky Petals"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 204,
+        "commonName": "Bloomquist Jean Dahlia",
+        "botanicalName": "Dahlia 'Bloomquist Jean'",
+        "genus": "Dahlia",
+        "category": "Flower",
+        "type": "Perennial Tuber",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A decorative dahlia with rich purple blooms that provide deep, royal color to garden beds and floral arrangements.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "8-11 (lift tubers in colder zones)",
+        "pestsDiseases": "Aphids, spider mites, powdery mildew. Slugs may damage young growth.",
+        "growingTip": "Purple varieties show best color with some afternoon shade in hot climates. Deadhead regularly.",
+        "bloomColor": "Purple",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Decorative",
+            "Cut Flower",
+            "Rich Color",
+            "Royal Purple"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 205,
+        "commonName": "Labyrinth Dahlia",
+        "botanicalName": "Dahlia 'Labyrinth'",
+        "genus": "Dahlia",
+        "category": "Flower",
+        "type": "Perennial Tuber",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A striking bicolor dahlia with white petals edged in purple, creating an intricate pattern reminiscent of a maze or labyrinth.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "8-11 (lift tubers in colder zones)",
+        "pestsDiseases": "Aphids, spider mites, powdery mildew. Slugs may damage young growth.",
+        "growingTip": "Bicolor varieties may show different color patterns depending on temperature. Cooler weather enhances edge coloring.",
+        "bloomColor": "White with Purple Edge",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Bicolor",
+            "Cut Flower",
+            "Striking",
+            "Intricate Pattern"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 206,
+        "commonName": "Coralie Dahlia",
+        "botanicalName": "Dahlia 'Coralie'",
+        "genus": "Dahlia",
+        "category": "Flower",
+        "type": "Perennial Tuber",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 14
+        },
+        "facts": "A compact dahlia with beautiful coral-orange blooms that add warm, tropical colors to gardens and arrangements.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Rich, Well-drained",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "8-11 (lift tubers in colder zones)",
+        "pestsDiseases": "Aphids, spider mites, powdery mildew. Slugs may damage young growth.",
+        "growingTip": "Compact varieties are perfect for containers and front of borders. Less staking required than tall varieties.",
+        "bloomColor": "Coral-Orange",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Coral Color",
+            "Cut Flower",
+            "Compact",
+            "Container Friendly"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 210,
+        "commonName": "Benary's Giant Mix Zinnia",
+        "botanicalName": "Zinnia elegans 'Benary's Giant Mix'",
+        "genus": "Zinnia",
+        "category": "Flower",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            5,
+            10
+        ],
+        "daysToMaturity": 75,
+        "companions": {
+            "friends": [
+                110,
+                100
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A top choice for cut flower growers due to its large blooms and sturdy stems.",
+        "family": "Asteraceae",
+        "origin": "Mexico",
+        "soilType": "Humus-rich, Well-drained",
+        "soilPH": "5.5-7.5",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Powdery mildew is common; ensure good air circulation.",
+        "growingTip": "Cut deep into the plant to get long stems for bouquets; this encourages more blooms.",
+        "bloomColor": "Mixed Colors",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Cut Flower",
+            "Heat Tolerant",
+            "Large Blooms"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 211,
+        "commonName": "Elena's Rojo Amaranth",
+        "botanicalName": "Amaranthus 'Elena's Rojo'",
+        "genus": "Amaranthus",
+        "category": "Flower",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 75,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 30
+        },
+        "facts": "A stunning amaranth with deep red plumes that can reach 6 feet tall, producing both ornamental beauty and edible leaves and seeds.",
+        "family": "Amaranthaceae",
+        "origin": "Central America",
+        "soilType": "Well-drained, Average",
+        "soilPH": "6.0-7.5",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Generally pest-free. Occasional aphids on young growth.",
+        "growingTip": "Direct sow after soil warms. Extremely heat and drought tolerant once established. Harvest young leaves for salads.",
+        "bloomColor": "Deep Red",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Dramatic Plumes",
+            "Heat Tolerant",
+            "Edible",
+            "Tall"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 212,
+        "commonName": "Flashback Mix Calendula",
+        "botanicalName": "Calendula officinalis 'Flashback Mix'",
+        "genus": "Calendula",
+        "category": "Flower",
+        "type": "Annual",
+        "light": "Full Sun",
+        "germinationDays": [
+            7,
+            14
+        ],
+        "daysToMaturity": 60,
+        "companions": {
+            "friends": [
+                110,
+                100
+            ],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 30
+        },
+        "facts": "A stunning calendula mix with unique bicolor flowers featuring orange and yellow petals with burgundy backs, creating a 'flashback' effect when petals curl.",
+        "family": "Asteraceae",
+        "origin": "Mediterranean",
+        "soilType": "Well-drained, Average",
+        "soilPH": "6.0-7.0",
+        "hardinessZone": "2-11",
+        "pestsDiseases": "Generally pest-free. May get aphids or powdery mildew in humid conditions.",
+        "growingTip": "Deadhead regularly to encourage continuous blooming. Petals are edible and great for salads and teas.",
+        "bloomColor": "Orange and Yellow",
+        "bloomSeason": "Spring to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Edible Flowers",
+            "Medicinal",
+            "Cool Season",
+            "Bicolor Effect"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 213,
+        "commonName": "Paradiso Tall Mix Echinacea",
+        "botanicalName": "Echinacea × hybrida 'Paradiso Tall Mix'",
+        "genus": "Echinacea",
+        "category": "Flower",
+        "type": "Perennial",
+        "light": "Full Sun",
+        "germinationDays": [
+            15,
+            30
+        ],
+        "daysToMaturity": 120,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 7,
+            "fertilize": 30
+        },
+        "facts": "A tall mix of hybrid coneflowers in various colors including pink, orange, yellow, and red, creating a vibrant wildflower display.",
+        "family": "Asteraceae",
+        "origin": "North America (Hybrid)",
+        "soilType": "Well-drained",
+        "soilPH": "Neutral to Slightly Alkaline",
+        "hardinessZone": "4-9",
+        "pestsDiseases": "Generally disease resistant. May get powdery mildew in humid conditions.",
+        "growingTip": "Deadhead spent flowers to encourage more blooms, or leave for birds to enjoy the seeds in fall.",
+        "bloomColor": "Mixed Colors",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Butterfly",
+        "specialFeatures": [
+            "Mixed Colors",
+            "Tall",
+            "Native Heritage",
+            "Bird Food"
+        ],
+        "rarity": "special"
+    },
+    {
+        "id": 300,
+        "commonName": "Meyer Lemon",
+        "botanicalName": "Citrus × meyeri",
+        "genus": "Citrus",
+        "category": "Fruit Tree",
+        "type": "Perennial Tree",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            30
+        ],
+        "daysToMaturity": 1095,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 30
+        },
+        "facts": "A cross between a lemon and mandarin orange, producing sweet, thin-skinned lemons perfect for cooking and eating fresh.",
+        "family": "Rutaceae",
+        "origin": "China",
+        "soilType": "Well-drained, Slightly Acidic",
+        "soilPH": "5.5-6.5",
+        "hardinessZone": "9-11 (container in colder zones)",
+        "pestsDiseases": "Scale insects, aphids, citrus canker. Root rot in poorly drained soils.",
+        "growingTip": "Excellent in containers. Bring indoors when temperatures drop below 50°F. Needs consistent moisture but not waterlogged.",
+        "bloomColor": "White",
+        "bloomSeason": "Year-round",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Sweet Lemons",
+            "Compact Tree",
+            "Fragrant",
+            "Container Friendly"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 301,
+        "commonName": "Tahitian Lime",
+        "botanicalName": "Citrus × latifolia",
+        "genus": "Citrus",
+        "category": "Fruit Tree",
+        "type": "Perennial Tree",
+        "light": "Full Sun",
+        "germinationDays": [
+            14,
+            30
+        ],
+        "daysToMaturity": 1095,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 3,
+            "fertilize": 30
+        },
+        "facts": "Also known as Persian lime, this variety produces large, seedless limes with thick skin and juicy flesh, perfect for cooking and cocktails.",
+        "family": "Rutaceae",
+        "origin": "Tahiti",
+        "soilType": "Well-drained, Slightly Acidic",
+        "soilPH": "5.5-6.5",
+        "hardinessZone": "9-11 (container in colder zones)",
+        "pestsDiseases": "Scale insects, aphids, citrus canker. Root rot in poorly drained soils.",
+        "growingTip": "Thornless variety makes harvesting easier. Excellent in containers. Protect from cold winds and frost.",
+        "bloomColor": "White",
+        "bloomSeason": "Year-round",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Seedless",
+            "Large Limes",
+            "Thornless",
+            "Container Friendly"
+        ],
+        "rarity": "common"
+    },
+    {
+        "id": 310,
+        "commonName": "Limelight Hydrangea",
+        "botanicalName": "Hydrangea paniculata 'Limelight'",
+        "genus": "Hydrangea",
+        "category": "Shrub",
+        "type": "Perennial Shrub",
+        "light": "Full Sun to Part Shade",
+        "germinationDays": [
+            14,
+            21
+        ],
+        "daysToMaturity": 365,
+        "companions": {
+            "friends": [],
+            "foes": []
+        },
+        "care": {
+            "water": 5,
+            "fertilize": 0
+        },
+        "facts": "Blooms start as a lime green, turn to white, and then fade to pink in the fall.",
+        "family": "Hydrangeaceae",
+        "origin": "China, Japan",
+        "soilType": "Moist, Well-drained",
+        "soilPH": "Adaptable",
+        "hardinessZone": "3-8",
+        "pestsDiseases": "Bud blight, leaf spot, rust.",
+        "growingTip": "Blooms on new wood, so prune in late winter or early spring for best results.",
+        "bloomColor": "Green to Pink",
+        "bloomSeason": "Summer to Fall",
+        "pollinatorType": "Bee",
+        "specialFeatures": [
+            "Color Change",
+            "Large Panicles",
+            "Sturdy"
+        ],
+        "rarity": "common"
+    }
+]

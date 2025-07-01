@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Tracker - Complete Suite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'bg-base': '#f8f7f4',
+                        'surface': '#ffffff',
+                        'text-base': '#3d403a',
+                        'text-muted': '#6e7368',
+                        'primary': '#4a7c59',
+                        'primary-light': '#5a8c69',
+                        'primary-dark': '#3a6c49',
+                        'accent': '#d4a373',
+                        'accent-light': '#e4b383',
+                        'garden-green': '#6b8f47',
+                        'garden-sage': '#8fbc8f',
+                        'garden-earth': '#8b7355',
+                        'garden-bloom': '#c19a6b',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-bg-base text-text-base">
+
+    <div id="app-container" class="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+        <!-- Enhanced Header with Gradient -->
+        <header class="mb-8 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary via-garden-green to-garden-sage opacity-10 rounded-3xl"></div>
+            <div class="relative bg-white/40 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-5xl font-bold bg-gradient-to-r from-primary to-garden-green bg-clip-text text-transparent flex items-center gap-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary to-garden-green rounded-2xl flex items-center justify-center shadow-lg">
+                                <i data-lucide="sprout" class="text-white h-8 w-8"></i>
+                            </div>
+                            Garden Tracker
+                        </h1>
+                        <p class="text-xl text-text-muted mt-2 ml-20">Your intelligent garden management companion</p>
+                    </div>
+                    <div class="hidden lg:flex items-center gap-4">
+                        <div class="text-right">
+                            <div class="text-sm text-text-muted">Today's Focus</div>
+                            <div class="text-lg font-semibold text-primary">🌱 Growing & Thriving</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Enhanced Navigation -->
+        <div id="main-navigation" class="mb-8">
+            <div class="bg-white/60 backdrop-blur-sm p-2 rounded-2xl shadow-lg border border-white/20">
+                <div class="flex flex-wrap gap-2">
+                    <button id="show-dashboard-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="layout-dashboard" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Dashboard
+                    </button>
+                    <button id="show-database-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="book-open" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Database
+                    </button>
+                    <button id="show-my-garden-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="home" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>My Garden
+                    </button>
+                    <button id="show-layout-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="layout-grid" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Layout
+                    </button>
+                    <button id="show-calendar-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="calendar" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Calendar
+                    </button>
+                    <button id="show-companions-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="users" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Companions
+                    </button>
+                    <button id="show-care-schedule-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="calendar-check" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Care
+                    </button>
+                    <button id="show-activity-log-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="bug-play" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Activity
+                    </button>
+                    <button id="show-pest-disease-guide-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="shield-alert" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Pest Guide
+                    </button>
+                    <button id="show-harvest-log-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="line-chart" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Harvest
+                    </button>
+                    <button id="show-ideas-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="lightbulb" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Ideas
+                    </button>
+                    <button data-action="open-settings" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
+                        <i data-lucide="settings" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dashboard-view" class="hidden"></div>
+        <div id="database-view" class="hidden"></div>
+        <div id="my-garden-view" class="hidden"></div>
+        <div id="layout-view" class="hidden"></div>
+        <div id="calendar-view" class="hidden"></div>
+        <div id="companions-view" class="hidden"></div>
+        <div id="care-schedule-view" class="hidden"></div>
+        <div id="activity-log-view" class="hidden"></div>
+        <div id="pest-disease-guide-view" class="hidden"></div>
+        <div id="harvest-log-view" class="hidden"></div>
+        <div id="ideas-view" class="hidden"></div>
+    </div>
+
+    <div id="modal-backdrop" class="hidden fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div id="modal-panel" class="bg-surface rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="agentic-features.js"></script>
+    <script src="agentic-ui.js"></script>
+    <script src="agentic-welcome.js"></script>
+</body>
+</html>
