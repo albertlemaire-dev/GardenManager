@@ -59,13 +59,7 @@ async function generateProactiveCareRecommendations(weatherData, plantData, user
     
     Provide responses that are time-sensitive, actionable, prioritized by urgency, weather-aware, and specific to individual plant needs.
     
-    Return your response as JSON with this structure:
-    {
-        "recommendations": [{"action": "string", "priority": "high|medium|low", "description": "string", "plantIds": []}],
-        "urgentTasks": [{"task": "string", "deadline": "string", "reason": "string"}],
-        "scheduleAdjustments": [{"adjustment": "string", "reason": "string"}],
-        "weatherAlerts": [{"level": "high|medium|low", "message": "string"}]
-    }`;
+    Return your response as clear, human-readable text with specific recommendations, organized by priority level. Use bullet points and clear headings. Be conversational but professional.`;
 
     const userPrompt = `Analyze current garden conditions and provide care recommendations:
     
@@ -75,20 +69,10 @@ async function generateProactiveCareRecommendations(weatherData, plantData, user
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
-        return JSON.parse(response);
+        return { analysis: response };
     } catch (error) {
         console.error('Proactive Care Agent error:', error);
-        return {
-            recommendations: [{
-                action: "manual_check",
-                priority: "medium",
-                description: "Perform manual garden inspection due to system error",
-                plantIds: []
-            }],
-            urgentTasks: [],
-            scheduleAdjustments: [],
-            weatherAlerts: []
-        };
+        return { analysis: "Unable to analyze garden conditions at this time. Please perform a manual garden inspection and check back later." };
     }
 }
 
@@ -103,14 +87,7 @@ async function analyzeePlantHealth(plantData, healthHistory = []) {
     
     Provide systematic analysis with confidence levels, multiple treatment options, prevention strategies, and monitoring schedules.
     
-    Return your response as JSON with this structure:
-    {
-        "healthAssessment": {"overallScore": 0-100, "summary": "string"},
-        "issues": [{"type": "string", "severity": "high|medium|low", "description": "string", "confidence": 0-100}],
-        "recommendations": [{"treatment": "string", "timeline": "string", "priority": "high|medium|low"}],
-        "growthAnalysis": {"stage": "string", "progress": "string", "expectations": "string"},
-        "preventiveMeasures": [{"measure": "string", "frequency": "string", "benefit": "string"}]
-    }`;
+    Return your response as clear, human-readable text. Include an overall health assessment, any issues found, specific treatment recommendations, and preventive measures. Use clear headings and bullet points.`;
 
     const userPrompt = `Analyze plant health status:
     
@@ -119,16 +96,10 @@ async function analyzeePlantHealth(plantData, healthHistory = []) {
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
-        return JSON.parse(response);
+        return { analysis: response };
     } catch (error) {
         console.error('Health Monitor Agent error:', error);
-        return {
-            healthAssessment: { overallScore: 75, summary: "Unable to analyze due to system error" },
-            issues: [],
-            recommendations: [{ treatment: "Visual inspection recommended", timeline: "immediate", priority: "medium" }],
-            growthAnalysis: { stage: "unknown", progress: "monitoring required", expectations: "check manually" },
-            preventiveMeasures: []
-        };
+        return { analysis: "Unable to analyze plant health at this time. Please perform a visual inspection of your plants and check for any signs of disease, pests, or nutrient deficiencies. Try running the health monitor again later." };
     }
 }
 
@@ -143,14 +114,7 @@ async function optimizeHarvests(plantData, weatherData, storageCapacity = {}) {
     
     Provide exact harvest timing, optimal methods, post-harvest handling, storage conditions, and processing opportunities.
     
-    Return your response as JSON with this structure:
-    {
-        "harvestSchedule": [{"plantId": "string", "harvestDate": "YYYY-MM-DD", "readiness": "ready|approaching|developing", "estimatedYield": "string"}],
-        "optimalTimes": [{"plantId": "string", "timeOfDay": "string", "reason": "string"}],
-        "storageRecommendations": [{"plantId": "string", "method": "string", "duration": "string", "conditions": "string"}],
-        "preservationMethods": [{"plantId": "string", "methods": ["string"], "priority": "high|medium|low"}],
-        "yieldPredictions": [{"plantId": "string", "expectedYield": "string", "confidence": 0-100}]
-    }`;
+    Return your response as clear, human-readable text. Include harvest schedules, optimal harvest times, storage recommendations, and yield predictions. Use clear headings and practical advice.`;
 
     const userPrompt = `Optimize harvest timing and storage:
     
@@ -160,16 +124,10 @@ async function optimizeHarvests(plantData, weatherData, storageCapacity = {}) {
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
-        return JSON.parse(response);
+        return { optimization: response };
     } catch (error) {
         console.error('Harvest Optimizer Agent error:', error);
-        return {
-            harvestSchedule: [],
-            optimalTimes: [],
-            storageRecommendations: [],
-            preservationMethods: [],
-            yieldPredictions: []
-        };
+        return { optimization: "Unable to optimize harvest timing at this time. Please check your plants for signs of maturity and harvest readiness manually. Try running the harvest optimizer again later." };
     }
 }
 
@@ -184,15 +142,7 @@ async function generateGardenPlan(currentPlants, availableSpace, seasonData, pla
     
     Consider soil health, pest management through diversity, space utilization, seasonal transitions, and labor efficiency.
     
-    Return your response as JSON with this structure:
-    {
-        "plan": {"summary": "string", "timeline": "string", "objectives": ["string"]},
-        "companionSuggestions": [{"plant": "string", "companions": ["string"], "benefits": ["string"]}],
-        "layoutOptimization": {"changes": ["string"], "efficiency": "string", "accessibility": "string"},
-        "rotationPlan": [{"season": "string", "plantings": ["string"], "benefits": "string"}],
-        "seasonalTasks": [{"task": "string", "timing": "string", "priority": "high|medium|low"}],
-        "spaceUtilization": {"current": "string", "optimized": "string", "improvements": ["string"]}
-    }`;
+    Return your response as clear, human-readable text. Include garden planning recommendations, companion planting suggestions, layout optimization ideas, and seasonal tasks. Use clear headings and practical advice.`;
 
     const userPrompt = `Generate comprehensive garden plan:
     
@@ -203,17 +153,10 @@ async function generateGardenPlan(currentPlants, availableSpace, seasonData, pla
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
-        return JSON.parse(response);
+        return { plan: response };
     } catch (error) {
         console.error('Garden Planner Agent error:', error);
-        return {
-            plan: { summary: "Manual planning recommended due to system error", timeline: "immediate", objectives: ["review current layout"] },
-            companionSuggestions: [],
-            layoutOptimization: { changes: [], efficiency: "unknown", accessibility: "review needed" },
-            rotationPlan: [],
-            seasonalTasks: [],
-            spaceUtilization: { current: "unknown", optimized: "unknown", improvements: [] }
-        };
+        return { plan: "Unable to generate garden plan at this time. Please review your current garden layout manually and consider companion planting opportunities. Try running the garden planner again later." };
     }
 }
 
@@ -228,15 +171,7 @@ async function analyzeEnvironmentalConditions(gardenLayout, weatherHistory, plan
     
     Integrate historical weather data, real-time monitoring, garden-specific microclimate factors, and climate adaptation strategies.
     
-    Return your response as JSON with this structure:
-    {
-        "analysis": {"summary": "string", "keyInsights": ["string"], "riskFactors": ["string"]},
-        "microclimates": [{"zone": "string", "characteristics": "string", "suitablePlants": ["string"]}],
-        "weatherPatterns": {"trends": ["string"], "seasonalChanges": "string", "predictions": ["string"]},
-        "environmentalRecommendations": [{"recommendation": "string", "impact": "high|medium|low", "timeline": "string"}],
-        "seasonalInsights": {"current": "string", "upcoming": "string", "preparations": ["string"]},
-        "optimizationSuggestions": [{"suggestion": "string", "benefit": "string", "effort": "high|medium|low"}]
-    }`;
+    Return your response as clear, human-readable text. Include environmental analysis, microclimate insights, weather pattern observations, and optimization suggestions. Use clear headings and practical recommendations.`;
 
     const userPrompt = `Analyze environmental conditions and provide insights:
     
@@ -246,17 +181,10 @@ async function analyzeEnvironmentalConditions(gardenLayout, weatherHistory, plan
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
-        return JSON.parse(response);
+        return { analysis: response };
     } catch (error) {
         console.error('Environmental Intelligence Agent error:', error);
-        return {
-            analysis: { summary: "Environmental analysis unavailable due to system error", keyInsights: [], riskFactors: [] },
-            microclimates: [],
-            weatherPatterns: { trends: [], seasonalChanges: "unknown", predictions: [] },
-            environmentalRecommendations: [],
-            seasonalInsights: { current: "unknown", upcoming: "unknown", preparations: [] },
-            optimizationSuggestions: []
-        };
+        return { analysis: "Unable to analyze environmental conditions at this time. Please observe your garden's microclimates manually and note any weather patterns affecting your plants. Try running the environmental intelligence agent again later." };
     }
 }
 

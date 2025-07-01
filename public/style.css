@@ -98,9 +98,6 @@ body {
 .nav-btn {
     @apply relative overflow-hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex !important;  /* Force flex display for navigation buttons */
-    visibility: visible !important;  /* Ensure buttons are always visible */
-    flex-grow: 1;  /* Ensure equal width distribution */
 }
 
 .nav-btn::before {
@@ -114,19 +111,6 @@ body {
 
 .nav-btn.active {
     @apply transform;
-}
-
-/* Ensure navigation container uses proper flexbox */
-.mb-8 .flex.flex-wrap.gap-2 {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
-}
-
-/* Force navigation container visibility */
-.mb-8 {
-    display: block !important;
-    visibility: visible !important;
 }
 
 /* Glass Effect */
@@ -184,6 +168,17 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+@keyframes glow {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes iconPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 /* Subtle animations */
 @keyframes fadeInUp {
     from {
@@ -207,4 +202,153 @@ body {
 
 #modal-panel {
     @apply bg-white/90 backdrop-blur-lg border border-white/20;
+}
+
+/* Garden Navigation Tabs */
+.garden-nav-tab {
+    @apply px-4 py-2 flex items-center gap-2 rounded-xl text-sm font-semibold;
+    @apply text-primary bg-transparent border-0 cursor-pointer;
+    @apply transition-all duration-300 ease-out;
+    @apply relative overflow-hidden;
+    min-width: fit-content;
+    white-space: nowrap;
+    min-height: 44px; /* Improved touch target */
+    position: relative;
+    border: 2px solid transparent;
+}
+
+/* Enhanced hover effects */
+.garden-nav-tab:hover {
+    @apply bg-white/70 text-primary-dark;
+    @apply transform translateY(-1px);
+    box-shadow: 
+        0 4px 12px rgba(74, 124, 89, 0.15),
+        0 2px 6px rgba(74, 124, 89, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(74, 124, 89, 0.2);
+}
+
+.garden-nav-tab:hover i {
+    @apply transform scale-110;
+    animation: iconPulse 0.6s ease-in-out;
+}
+
+.garden-nav-tab.active i {
+    @apply transform scale-110;
+}
+
+/* Enhanced active state */
+.garden-nav-tab.active {
+    @apply bg-gradient-to-r from-primary to-garden-green text-white;
+    @apply transform translateY(-2px) scale-105;
+    box-shadow: 
+        0 8px 20px rgba(74, 124, 89, 0.3),
+        0 4px 12px rgba(74, 124, 89, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+/* Glowing indicator for active tab */
+.garden-nav-tab.active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    border-radius: 99px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.garden-nav-tab:focus {
+    @apply outline-none;
+    box-shadow: 
+        0 0 0 3px rgba(74, 124, 89, 0.3),
+        0 4px 12px rgba(74, 124, 89, 0.15);
+    border-color: rgba(74, 124, 89, 0.5);
+}
+
+/* Mobile Navigation Styles */
+.garden-nav-tab-mobile {
+    @apply px-3 py-3 justify-center;
+    @apply transition-all duration-300 ease-out;
+    @apply border-2 border-transparent rounded-xl;
+    min-width: 48px;
+    min-height: 48px;
+}
+
+.garden-nav-tab-mobile:hover {
+    @apply bg-white/50 transform translateY(-1px);
+    box-shadow: 0 4px 8px rgba(74, 124, 89, 0.1);
+    border-color: rgba(74, 124, 89, 0.15);
+}
+
+.garden-nav-tab-mobile.active {
+    @apply bg-gradient-to-r from-primary to-garden-green text-white;
+    @apply transform translateY(-1px);
+    box-shadow: 0 6px 12px rgba(74, 124, 89, 0.25);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.garden-nav-tab-mobile-menu {
+    @apply flex-col px-3 py-4 text-center justify-center items-center;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-primary/15 hover:text-primary-dark;
+    @apply rounded-xl border-2 border-transparent;
+    min-height: 60px;
+}
+
+.garden-nav-tab-mobile-menu:hover {
+    @apply transform translateY(-1px);
+    box-shadow: 0 4px 8px rgba(74, 124, 89, 0.1);
+    border-color: rgba(74, 124, 89, 0.1);
+}
+
+.garden-nav-tab-mobile-menu.active {
+    @apply bg-primary/25 text-primary-dark;
+    @apply transform translateY(-1px);
+    box-shadow: 0 4px 8px rgba(74, 124, 89, 0.15);
+    border-color: rgba(74, 124, 89, 0.2);
+}
+
+/* Mobile Menu Animation */
+.mobile-menu {
+    @apply transition-all duration-300 ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.mobile-menu.show {
+    max-height: 400px;
+}
+
+/* Hamburger Animation */
+.mobile-menu-toggle .hamburger-icon,
+.mobile-menu-toggle .close-icon {
+    @apply transition-all duration-300;
+}
+
+.mobile-menu-toggle.active .hamburger-icon {
+    @apply hidden;
+}
+
+.mobile-menu-toggle.active .close-icon {
+    @apply block;
+}
+
+/* Responsive Navigation Layout */
+@media (max-width: 768px) {
+    .garden-nav-tab {
+        @apply text-xs;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .garden-nav-tab {
+        @apply px-3 py-2 text-sm;
+    }
 } 

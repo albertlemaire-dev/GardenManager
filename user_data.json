@@ -238,6 +238,97 @@
       "plantingDate": "2025-04-08",
       "source": "VOMGC",
       "notes": ""
+    },
+    {
+      "instanceId": "instance_1751406942377",
+      "plantId": "211",
+      "plantingDate": "2025-05-01",
+      "source": "Johnny's Seeds",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751406960126",
+      "plantId": "212",
+      "plantingDate": "2025-05-01",
+      "source": "Johnny's Seeds",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751406976944",
+      "plantId": "213",
+      "plantingDate": "2025-06-11",
+      "source": "Johnny's Seeds",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407002844",
+      "plantId": "201",
+      "plantingDate": "2025-04-16",
+      "source": "Stonehouse Dahlias",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407043311",
+      "plantId": "202",
+      "plantingDate": "2025-05-15",
+      "source": "Stonehouse Dahlias (originally)",
+      "notes": "Originally sourced from stonehouse dahlias, however, this year the plant was grown from last year's tuber production\n"
+    },
+    {
+      "instanceId": "instance_1751407081961",
+      "plantId": "203",
+      "plantingDate": "2025-04-16",
+      "source": "Farmhouse Flower Farm",
+      "notes": "Grown from last year's tubers"
+    },
+    {
+      "instanceId": "instance_1751407213028",
+      "plantId": "33",
+      "plantingDate": "2024-06-01",
+      "source": "Van Winden's Garden Center",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407233929",
+      "plantId": "34",
+      "plantingDate": "2024-06-01",
+      "source": "Van Winden's Garden Center",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407268913",
+      "plantId": "35",
+      "plantingDate": "2024-06-01",
+      "source": "",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407285929",
+      "plantId": "36",
+      "plantingDate": "2024-06-01",
+      "source": "Claudia",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407310979",
+      "plantId": "37",
+      "plantingDate": "2025-06-03",
+      "source": "Sonoma Mission Gardens",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407323363",
+      "plantId": "38",
+      "plantingDate": "2025-06-03",
+      "source": "Sonoma Mission Gardens",
+      "notes": ""
+    },
+    {
+      "instanceId": "instance_1751407334564",
+      "plantId": "39",
+      "plantingDate": "2025-05-01",
+      "source": "Claudia",
+      "notes": ""
     }
   ],
   "gardenLayout": {

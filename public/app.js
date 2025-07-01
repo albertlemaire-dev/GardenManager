@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Garden Tracker app.js loaded and DOMContentLoaded fired');
     // --- CONFIGURATION ---
-    let OPENAI_API_KEY = ""; // API key will be loaded from localStorage or user input
+    // IMPORTANT: Paste your OpenAI API key here or use the Settings panel.
+    // For personal use only. Do not expose this key in a public-facing application.
+    let OPENAI_API_KEY = "PASTE_YOUR_OPENAI_API_KEY_HERE";
     
     // Check for API key in localStorage first
     const storedKey = localStorage.getItem('openai_api_key');
@@ -52,14 +54,40 @@ document.addEventListener('DOMContentLoaded', () => {
         modalBackdrop: document.getElementById('modal-backdrop'),
         modalPanel: document.getElementById('modal-panel'),
     };
-    document.querySelectorAll('#main-navigation .nav-btn[id^="show-"]').forEach(btn => {
-        const viewNameKebab = btn.id.replace('show-', '').replace('-btn', '');
-        const viewNameCamel = viewNameKebab.replace(/-./g, x => x[1].toUpperCase());
-        mainElements[`${viewNameCamel}View`] = document.getElementById(`${viewNameKebab}-view`);
-        mainElements[`${viewNameCamel}Btn`] = btn;
-        btn.addEventListener('click', () => {
-            appState.currentView = viewNameCamel;
-            renderAll();
+    // Initialize new navigation system
+    document.querySelectorAll('.garden-nav-tab').forEach(btn => {
+        const viewName = btn.getAttribute('data-view');
+        const action = btn.getAttribute('data-action');
+        
+        if (viewName) {
+            // Store view elements for easy access
+            mainElements[`${viewName}View`] = document.getElementById(`${viewName.replace(/([A-Z])/g, '-$1').toLowerCase()}-view`);
+            mainElements[`${viewName}Btn`] = btn;
+            
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                appState.currentView = viewName;
+                updateNavigation();
+                renderAll();
+                // Close mobile menu if open
+                closeMobileMenu();
+            });
+        } else if (action) {
+            // Handle special actions like settings
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Handle the action (this will be processed by existing handleAppClick)
+                // Close mobile menu if open
+                closeMobileMenu();
+            });
+        }
+    });
+
+    // Initialize mobile menu toggle functionality
+    document.querySelectorAll('.mobile-menu-toggle').forEach(toggleBtn => {
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMobileMenu();
         });
     });
 
@@ -155,96 +183,99 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
+    // --- NAVIGATION FUNCTIONS ---
+    const updateNavigation = () => {
+        // Reset all navigation buttons
+        document.querySelectorAll('.garden-nav-tab').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Activate current view button
+        const currentBtn = document.querySelector(`.garden-nav-tab[data-view="${appState.currentView}"]`);
+        if (currentBtn) {
+            currentBtn.classList.add('active');
+        }
+    };
+
+    // Mobile menu functions
+    const toggleMobileMenu = () => {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const toggleBtn = document.querySelector('.mobile-menu-toggle');
+        
+        if (mobileMenu && toggleBtn) {
+            const isOpen = mobileMenu.classList.contains('show');
+            
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+    };
+
+    const openMobileMenu = () => {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const toggleBtn = document.querySelector('.mobile-menu-toggle');
+        
+        if (mobileMenu && toggleBtn) {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('show');
+            toggleBtn.classList.add('active');
+        }
+    };
+
+    const closeMobileMenu = () => {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const toggleBtn = document.querySelector('.mobile-menu-toggle');
+        
+        if (mobileMenu && toggleBtn) {
+            mobileMenu.classList.remove('show');
+            toggleBtn.classList.remove('active');
+            // Hide after animation completes
+            setTimeout(() => {
+                if (!mobileMenu.classList.contains('show')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }, 300);
+        }
+    };
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const nav = e.target.closest('nav');
+        
+        if (mobileMenu && !mobileMenu.classList.contains('hidden') && !nav) {
+            closeMobileMenu();
+        }
+    });
+
     // --- RENDER VIEWS ---
     const renderAll = () => {
-        console.log(`==================== RENDER ALL START: ${appState.currentView} ====================`);
+        console.log(`Rendering view: ${appState.currentView}`);
         
         // Preserve agentic interface visibility state during view changes
         const agenticInterface = document.getElementById('agentic-interface');
         const wasAgenticVisible = agenticInterface && !agenticInterface.classList.contains('translate-x-full');
         
-        // Debug: Check initial state of navigation
-        const allNavButtons = document.querySelectorAll('#main-navigation .nav-btn');
-        console.log(`🔍 Initial state: Found ${allNavButtons.length} navigation buttons`);
-        allNavButtons.forEach((btn, index) => {
-            console.log(`Button ${index}: id="${btn.id}", display="${btn.style.display}", visibility="${btn.style.visibility}", hidden class="${btn.classList.contains('hidden')}", text="${btn.textContent.trim()}"`);
-        });
+        // Update navigation highlighting
+        updateNavigation();
         
-        // Ensure main navigation containers are visible
-        const navContainer = document.querySelector('#main-navigation');
-        const navInner = document.querySelector('#main-navigation .flex.flex-wrap.gap-2');
-        
-        console.log(`🔍 Navigation container found: ${!!navContainer}`);
-        console.log(`🔍 Navigation inner found: ${!!navInner}`);
-        
-        if (navContainer) {
-            navContainer.style.display = '';
-            navContainer.style.visibility = '';
-            navContainer.classList.remove('hidden');
-            console.log(`✅ Navigation container made visible`);
-        }
-        
-        if (navInner) {
-            navInner.style.display = '';
-            navInner.style.visibility = '';
-            navInner.classList.remove('hidden');
-            console.log(`✅ Navigation inner made visible`);
-        }
-        
-        // Hide all views and reset all navigation buttons
-        console.log(`🔄 Resetting views and buttons...`);
+        // Hide all views
         Object.keys(mainElements).forEach(key => {
             if (key.endsWith('View') && mainElements[key]) {
                 mainElements[key].classList.add('hidden');
             }
-            if (key.endsWith('Btn') && mainElements[key]) {
-                // Reset button styling but keep them visible
-                const btn = mainElements[key];
-                console.log(`🔄 Resetting button: ${key}, id="${btn.id}", before: display="${btn.style.display}", visibility="${btn.style.visibility}"`);
-                
-                btn.classList.remove('bg-gradient-to-r', 'from-primary', 'to-garden-green', 'text-white', 'shadow-lg', 'scale-105');
-                btn.classList.add('text-text-muted');
-                
-                // Critical fix: Force all navigation buttons to be visible
-                btn.classList.remove('hidden');
-                btn.style.display = '';  // Remove inline style to let CSS classes take precedence
-                btn.style.visibility = '';  // Remove inline style to let CSS classes take precedence
-                
-                console.log(`✅ After reset: display="${btn.style.display}", visibility="${btn.style.visibility}", hidden="${btn.classList.contains('hidden')}"`);
-            }
         });
         
-        // CRITICAL FIX: Ensure ALL navigation buttons are visible regardless of mainElements registration
-        const navigationButtons = document.querySelectorAll('#main-navigation .nav-btn');
-        console.log(`🔧 CRITICAL FIX: Forcing visibility for all ${navigationButtons.length} nav buttons`);
-        navigationButtons.forEach((btn, index) => {
-            btn.classList.remove('hidden');
-            btn.style.display = '';  // Let CSS handle the display
-            btn.style.visibility = '';  // Let CSS handle the visibility
-            // Ensure the button has proper flex styling for layout
-            if (!btn.classList.contains('flex-grow')) {
-                btn.classList.add('flex-grow');
-            }
-            console.log(`✅ Nav button ${index} (${btn.id || btn.getAttribute('data-action')}): forced visible`);
-        });
-        
-        // Show the current view and highlight its button
+        // Show the current view
         const viewEl = mainElements[`${appState.currentView}View`];
-        const btnEl = mainElements[`${appState.currentView}Btn`];
         
         if (viewEl) {
             viewEl.classList.remove('hidden');
             console.log(`Showing view: ${appState.currentView}`);
         } else {
             console.warn(`View element not found for: ${appState.currentView}`);
-        }
-        
-        if (btnEl) {
-            btnEl.classList.remove('text-text-muted');
-            btnEl.classList.add('bg-gradient-to-r', 'from-primary', 'to-garden-green', 'text-white', 'shadow-lg', 'scale-105');
-            console.log(`Highlighted button for: ${appState.currentView}`);
-        } else {
-            console.warn(`Button element not found for: ${appState.currentView}`);
         }
         
         // Render the specific view content
@@ -276,57 +307,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         }
         
-        // Reinitialize icons and ensure navigation is still visible
-        lucide.createIcons();
+        // RESTORE agentic interface visibility state after rendering
+        if (agenticInterface && wasAgenticVisible) {
+            // Ensure the interface remains visible if it was visible before
+            agenticInterface.classList.remove('translate-x-full');
+            agenticInterface.classList.add('translate-x-0');
+            
+            // Update the AgenticUI instance state if it exists
+            if (window.agenticUI) {
+                window.agenticUI.isVisible = true;
+            }
+            
+            console.log('Restored agentic interface visibility');
+        }
         
-        // Double-check main navigation visibility
-        setTimeout(() => {
-            const navCheck = document.querySelector('#main-navigation');
-            const navInnerCheck = document.querySelector('#main-navigation .flex.flex-wrap.gap-2');
-            const mainNavButtonsCheck = document.querySelectorAll('#main-navigation .nav-btn');
-            
-            if (navCheck && (navCheck.style.display === 'none' || navCheck.style.visibility === 'hidden' || navCheck.classList.contains('hidden'))) {
-                console.warn('Navigation container was hidden, forcing visibility');
-                navCheck.style.display = '';
-                navCheck.style.visibility = '';
-                navCheck.classList.remove('hidden');
-            }
-            
-            if (navInnerCheck && (navInnerCheck.style.display === 'none' || navInnerCheck.style.visibility === 'hidden' || navInnerCheck.classList.contains('hidden'))) {
-                console.warn('Navigation inner container was hidden, forcing visibility');
-                navInnerCheck.style.display = '';
-                navInnerCheck.style.visibility = '';
-                navInnerCheck.classList.remove('hidden');
-            }
-            
-            // Check each main navigation button
-            let hiddenButtonCount = 0;
-            mainNavButtonsCheck.forEach((btn, index) => {
-                if (btn && (btn.style.display === 'none' || btn.style.visibility === 'hidden' || btn.classList.contains('hidden'))) {
-                    console.warn(`Main navigation button ${index} was hidden, forcing visibility`);
-                    btn.style.display = '';  // Use flex for proper layout
-                    btn.style.visibility = '';
-                    btn.classList.remove('hidden');
-                    // Don't set flexGrow since buttons already have flex-grow Tailwind class
-                    hiddenButtonCount++;
-                }
-            });
-            
-            if (hiddenButtonCount > 0) {
-                console.warn(`Fixed visibility for ${hiddenButtonCount} main navigation buttons`);
-            }
-            
-            console.log(`Navigation check complete: Found ${mainNavButtonsCheck.length} main navigation buttons`);
-            
-            // Final debug: Show state of all navigation buttons
-            const finalNavButtons = document.querySelectorAll('#main-navigation .nav-btn');
-            console.log(`🏁 FINAL STATE: Found ${finalNavButtons.length} navigation buttons`);
-            finalNavButtons.forEach((btn, index) => {
-                const computedStyle = window.getComputedStyle(btn);
-                console.log(`Final Button ${index}: id="${btn.id}", display="${btn.style.display}", visibility="${btn.style.visibility}", computed display="${computedStyle.display}", computed visibility="${computedStyle.visibility}", hidden class="${btn.classList.contains('hidden')}", text="${btn.textContent.trim()}"`);
-            });
-            console.log(`==================== RENDER ALL END ====================`);
-        }, 50);
+        // Reinitialize icons
+        lucide.createIcons();
     };
     
     const renderDashboardView = () => {
@@ -2381,180 +2377,7 @@ ${plantSummaries}
 
 ## Task: Generate Personalized Garden Recommendations
 
-As an expert gardening consultant, analyze the above data and provide 4-6 prioritized, actionable recommendations for the next 2-3 days.`;
-
-                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${OPENAI_API_KEY}`
-                        },
-                        body: JSON.stringify({
-                            model: 'gpt-4-1106-preview',
-                            messages: [
-                                { role: 'system', content: 'You are a helpful assistant.' },
-                                { role: 'user', content: prompt }
-                            ],
-                            max_tokens: 1000
-                        })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`API request failed with status ${response.status}: ${response.statusText}`);
-                    }
-
-                    const data = await response.json();
-                    const recommendations = data.choices[0].message.content.trim();
-                    if (container) {
-                        container.innerHTML = `<div class="space-y-4">
-                            <h2 class="text-2xl font-bold text-text-base">Smart Recommendations</h2>
-                            <p class="text-text-muted">${recommendations}</p>
-                        </div>`;
-                    }
-                } catch (error) {
-                    console.error('Error generating recommendations:', error);
-                    if (container) {
-                        container.innerHTML = `<p class="text-text-muted">Error generating recommendations: ${error.message}</p>`;
-                    }
-                }
-            })();
-        } else {
-            console.warn('OPENAI_API_KEY not set or invalid. Using fallback recommendations.');
-            generateAIRecommendations.__usingFallback = true;
-            const container = document.getElementById('ai-content');
-            if (container) {
-                container.innerHTML = `<div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-text-base">Smart Recommendations</h2>
-                    <p class="text-text-muted">Fallback recommendations: No API key provided or invalid.</p>
-                </div>`;
-            }
-        }
-    };
-
-    const renderAll = () => {
-        console.log('==================== RENDER ALL START ====================');
-
-        // Ensure navigation is always visible
-        const navButtons = document.querySelectorAll('#main-navigation .nav-btn');
-        navButtons.forEach(btn => {
-            btn.style.display = 'flex';
-            btn.style.visibility = 'visible';
-        });
-
-        // Reset all buttons
-        for (const key in mainElements) {
-            if (mainElements[key].endsWith('Btn')) {
-                mainElements[key].classList.remove('bg-primary', 'text-white');
-                mainElements[key].classList.add('text-text-muted', 'hover:bg-stone-200');
-            }
-        }
-
-        // Show the current view
-        const currentView = currentViewState.view;
-        mainElements[currentView].classList.remove('hidden');
-        mainElements[currentView + 'Btn'].classList.add('bg-primary', 'text-white');
-        mainElements[currentView + 'Btn'].classList.remove('text-text-muted', 'hover:bg-stone-200');
-
-        // Render the current view's content
-        switch (currentView) {
-            case 'dashboardView':
-                renderDashboardView();
-                break;
-            case 'databaseView':
-                renderDatabaseView();
-                break;
-            case 'myGardenView':
-                renderMyGardenView();
-                break;
-            case 'layoutView':
-                renderLayoutView();
-                break;
-            case 'calendarView':
-                renderCalendarView();
-                break;
-            case 'harvestLogView':
-                renderHarvestLogView();
-                break;
-            case 'pestDiseaseGuideView':
-                renderPestDiseaseGuideView();
-                break;
-            case 'ideasView':
-                renderIdeasView();
-                break;
-        }
-
-        // Ensure navigation is always visible after rendering
-        const navButtonsAfterRender = document.querySelectorAll('#main-navigation .nav-btn');
-        navButtonsAfterRender.forEach(btn => {
-            btn.style.display = 'flex';
-            btn.style.visibility = 'visible';
-        });
-
-        console.log('==================== RENDER ALL END ====================');
-    };
-
-    const debugNavigation = () => {
-        console.log('==================== DEBUG NAVIGATION START ====================');
-
-        const navButtons = document.querySelectorAll('#main-navigation .nav-btn');
-        console.log(`Found ${navButtons.length} navigation buttons`);
-
-        navButtons.forEach((btn, index) => {
-            console.log(`Button ${index + 1}:`);
-            console.log(`  Display: ${btn.style.display}`);
-            console.log(`  Visibility: ${btn.style.visibility}`);
-            console.log(`  Classes: ${btn.className}`);
-            console.log(`  Text: ${btn.textContent}`);
-        });
-
-        const navContainer = document.getElementById('main-navigation');
-        console.log(`Navigation container found: ${!!navContainer}`);
-        if (navContainer) {
-            console.log(`  Display: ${navContainer.style.display}`);
-            console.log(`  Visibility: ${navContainer.style.visibility}`);
-            console.log(`  Classes: ${navContainer.className}`);
-        }
-
-        console.log('==================== DEBUG NAVIGATION END ====================');
-    };
-
-    // Event listeners
-    mainElements.dashboardBtn.addEventListener('click', () => switchView('dashboardView'));
-    mainElements.databaseBtn.addEventListener('click', () => switchView('databaseView'));
-    mainElements.myGardenBtn.addEventListener('click', () => switchView('myGardenView'));
-    mainElements.layoutBtn.addEventListener('click', () => switchView('layoutView'));
-    mainElements.calendarBtn.addEventListener('click', () => switchView('calendarView'));
-    mainElements.harvestLogBtn.addEventListener('click', () => switchView('harvestLogView'));
-    mainElements.pestDiseaseGuideBtn.addEventListener('click', () => switchView('pestDiseaseGuideView'));
-    mainElements.ideasBtn.addEventListener('click', () => switchView('ideasView'));
-
-    mainElements.dashboardView.addEventListener('click', handleViewClick);
-    mainElements.databaseView.addEventListener('click', handleViewClick);
-    mainElements.myGardenView.addEventListener('click', handleViewClick);
-    mainElements.layoutView.addEventListener('click', handleViewClick);
-    mainElements.calendarView.addEventListener('click', handleViewClick);
-    mainElements.harvestLogView.addEventListener('click', handleViewClick);
-    mainElements.pestDiseaseGuideView.addEventListener('click', handleViewClick);
-    mainElements.ideasView.addEventListener('click', handleViewClick);
-
-    mainElements.modalPanel.addEventListener('click', handleModalClick);
-    mainElements.modalBackdrop.addEventListener('click', handleModalClick);
-
-    // Initial render
-    renderAll();
-    fetchAndRenderWeather();
-    generateAIRecommendations();
-
-    // Fallback for DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', () => {
-        renderAll();
-        fetchAndRenderWeather();
-        generateAIRecommendations();
-    });
-
-    // Debugging
-    window.debugNavigation = debugNavigation;
-})();
+As an expert gardening consultant, analyze the above data and provide 4-6 prioritized, actionable recommendations for the next 2-3 days. 
 
 ### Analysis Framework:
 1. **Urgency Assessment**: Identify time-sensitive tasks (overdue care, harvest windows, weather threats)
@@ -2621,7 +2444,7 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
                     generateAIRecommendations(weatherData);
                 }
             })();
-            return; // prevent execution of local algorithm when GPT generation succeeds
+            return; // prevent execution of local algorithm when GPT generation succeeds/attempts
         }
 
         // --- LOCAL FALLBACK ALGORITHM ---
@@ -2904,6 +2727,7 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
         const { action, id } = target.dataset;
         console.log('handleAppClick called with action:', action, 'id:', id);
 
+        
         switch (action) {
             case 'navigate':
                 appState.currentView = id;
@@ -3684,17 +3508,7 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
                 console.warn(`Found ${invalidPlants.length} invalid plants in database`, invalidPlants);
             }
             
-            // Set up view buttons
-            document.querySelectorAll('#main-navigation .nav-btn[id^="show-"]').forEach(btn => {
-                const viewNameKebab = btn.id.replace('show-', '').replace('-btn', '');
-                const viewNameCamel = viewNameKebab.replace(/-./g, x => x[1].toUpperCase());
-                mainElements[`${viewNameCamel}View`] = document.getElementById(`${viewNameKebab}-view`);
-                mainElements[`${viewNameCamel}Btn`] = btn;
-                btn.addEventListener('click', () => {
-                    appState.currentView = viewNameCamel;
-                    renderAll();
-                });
-            });
+            // Navigation is already set up in the DOM initialization above
 
             document.addEventListener('click', handleAppClick);
 
@@ -3722,40 +3536,6 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
 
     init();
     
-    // Debug function accessible from browser console
-    window.debugNavigation = () => {
-        console.log('=== NAVIGATION DEBUG ===');
-        const allButtons = document.querySelectorAll('#main-navigation .nav-btn');
-        console.log(`Found ${allButtons.length} navigation buttons`);
-        allButtons.forEach((btn, i) => {
-            const computed = window.getComputedStyle(btn);
-            console.log(`Button ${i}: ${btn.id}`);
-            console.log(`  Text: "${btn.textContent.trim()}"`);
-            console.log(`  Style display: "${btn.style.display}"`);
-            console.log(`  Style visibility: "${btn.style.visibility}"`);
-            console.log(`  Computed display: "${computed.display}"`);
-            console.log(`  Computed visibility: "${computed.visibility}"`);
-            console.log(`  Has hidden class: ${btn.classList.contains('hidden')}`);
-            console.log(`  Classes: ${btn.className}`);
-            console.log('---');
-        });
-        
-        const navContainer = document.querySelector('#main-navigation');
-        const navInner = document.querySelector('#main-navigation .flex.flex-wrap.gap-2');
-        console.log(`Navigation container exists: ${!!navContainer}`);
-        console.log(`Navigation inner exists: ${!!navInner}`);
-        
-        if (navContainer) {
-            const containerComputed = window.getComputedStyle(navContainer);
-            console.log(`Container display: "${containerComputed.display}"`);
-        }
-        
-        if (navInner) {
-            const innerComputed = window.getComputedStyle(navInner);
-            console.log(`Inner display: "${innerComputed.display}"`);
-        }
-    };
-    
     // Ensure the application renders the initial view
     document.addEventListener('DOMContentLoaded', () => {
         console.log('DOM fully loaded, ensuring initial view is rendered');
@@ -3764,9 +3544,6 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
             if (appState.currentView === 'dashboard') {
                 renderAll();
             }
-            
-            // Make debug function available after load
-            console.log('🛠️ Debug function available: Call debugNavigation() in console to check navigation state');
         }, 100);
     });
 

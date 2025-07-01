@@ -565,6 +565,81 @@ function generateCoordinationSummary(results) {
     };
 }
 
+// =================================================================================
+// AGENT RESULTS STORAGE ENDPOINTS
+// =================================================================================
+
+// Store agent results permanently
+app.post('/api/agent-results', (req, res) => {
+    try {
+        const agentResult = req.body;
+        
+        // Validate required fields
+        if (!agentResult.agentType || !agentResult.result || !agentResult.timestamp) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+        
+        // Load existing results
+        let agentResults = [];
+        try {
+            const data = fs.readFileSync('agent_results.json', 'utf8');
+            agentResults = JSON.parse(data);
+        } catch (error) {
+            // File doesn't exist yet, start with empty array
+            agentResults = [];
+        }
+        
+        // Add new result
+        agentResults.push(agentResult);
+        
+        // Keep only last 1000 results to prevent file from growing too large
+        if (agentResults.length > 1000) {
+            agentResults = agentResults.slice(-1000);
+        }
+        
+        // Save back to file
+        fs.writeFileSync('agent_results.json', JSON.stringify(agentResults, null, 2));
+        
+        res.json({ success: true, message: 'Agent result saved successfully' });
+        
+    } catch (error) {
+        console.error('Error saving agent result:', error);
+        res.status(500).json({ error: 'Failed to save agent result' });
+    }
+});
+
+// Get all agent results
+app.get('/api/agent-results', (req, res) => {
+    try {
+        const { date } = req.query;
+        
+        // Load results from file
+        let agentResults = [];
+        try {
+            const data = fs.readFileSync('agent_results.json', 'utf8');
+            agentResults = JSON.parse(data);
+        } catch (error) {
+            // File doesn't exist, return empty array
+            return res.json([]);
+        }
+        
+        // Filter by date if provided
+        if (date) {
+            const targetDate = new Date(date).toDateString();
+            agentResults = agentResults.filter(result => result.date === targetDate);
+        }
+        
+        // Sort by timestamp (newest first)
+        agentResults.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        res.json(agentResults);
+        
+    } catch (error) {
+        console.error('Error fetching agent results:', error);
+        res.status(500).json({ error: 'Failed to fetch agent results' });
+    }
+});
+
 // Helper function to get current season
 function getCurrentSeason() {
     const now = new Date();

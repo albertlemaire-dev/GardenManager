@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden Tracker - Complete Suite</title>
+    <title>Garden Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@
                             <div class="w-16 h-16 bg-gradient-to-br from-primary to-garden-green rounded-2xl flex items-center justify-center shadow-lg">
                                 <i data-lucide="sprout" class="text-white h-8 w-8"></i>
                             </div>
-                            Garden Tracker
+                            Garden Management System
                         </h1>
                         <p class="text-xl text-text-muted mt-2 ml-20">Your intelligent garden management companion</p>
                     </div>
@@ -65,49 +65,156 @@
             </div>
         </header>
 
-        <!-- Enhanced Navigation -->
-        <div id="main-navigation" class="mb-8">
-            <div class="bg-white/60 backdrop-blur-sm p-2 rounded-2xl shadow-lg border border-white/20">
-                <div class="flex flex-wrap gap-2">
-                    <button id="show-dashboard-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="layout-dashboard" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Dashboard
+        <!-- Responsive Navigation Bar -->
+        <nav class="mb-8 bg-white/60 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg">
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex p-3 gap-2 justify-center">
+                <button class="garden-nav-tab" data-view="dashboard">
+                    <i data-lucide="layout-dashboard" class="h-4 w-4"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="garden-nav-tab" data-view="database">
+                    <i data-lucide="book-open" class="h-4 w-4"></i>
+                    <span>Database</span>
+                </button>
+                <button class="garden-nav-tab" data-view="myGarden">
+                    <i data-lucide="home" class="h-4 w-4"></i>
+                    <span>My Garden</span>
+                </button>
+                <button class="garden-nav-tab" data-view="layout">
+                    <i data-lucide="layout-grid" class="h-4 w-4"></i>
+                    <span>Layout</span>
+                </button>
+                <button class="garden-nav-tab" data-view="calendar">
+                    <i data-lucide="calendar" class="h-4 w-4"></i>
+                    <span>Calendar</span>
+                </button>
+                <button class="garden-nav-tab" data-view="companions">
+                    <i data-lucide="users" class="h-4 w-4"></i>
+                    <span>Companions</span>
+                </button>
+                <button class="garden-nav-tab" data-view="careSchedule">
+                    <i data-lucide="calendar-check" class="h-4 w-4"></i>
+                    <span>Care</span>
+                </button>
+                <button class="garden-nav-tab" data-view="activityLog">
+                    <i data-lucide="bug-play" class="h-4 w-4"></i>
+                    <span>Activity</span>
+                </button>
+                <button class="garden-nav-tab" data-view="pestDiseaseGuide">
+                    <i data-lucide="shield-alert" class="h-4 w-4"></i>
+                    <span>Pest Guide</span>
+                </button>
+                <button class="garden-nav-tab" data-view="harvestLog">
+                    <i data-lucide="line-chart" class="h-4 w-4"></i>
+                    <span>Harvest</span>
+                </button>
+                <button class="garden-nav-tab" data-view="ideas">
+                    <i data-lucide="lightbulb" class="h-4 w-4"></i>
+                    <span>Ideas</span>
+                </button>
+                <button class="garden-nav-tab" data-action="open-settings">
+                    <i data-lucide="settings" class="h-4 w-4"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+
+            <!-- Tablet Navigation - Icon + Text -->
+            <div class="hidden md:flex lg:hidden p-3 gap-1 justify-center flex-wrap">
+                <button class="garden-nav-tab" data-view="dashboard" title="Dashboard">
+                    <i data-lucide="layout-dashboard" class="h-4 w-4"></i>
+                    <span class="text-xs">Dashboard</span>
+                </button>
+                <button class="garden-nav-tab" data-view="myGarden" title="My Garden">
+                    <i data-lucide="home" class="h-4 w-4"></i>
+                    <span class="text-xs">Garden</span>
+                </button>
+                <button class="garden-nav-tab" data-view="calendar" title="Calendar">
+                    <i data-lucide="calendar" class="h-4 w-4"></i>
+                    <span class="text-xs">Calendar</span>
+                </button>
+                <button class="garden-nav-tab" data-view="careSchedule" title="Care Schedule">
+                    <i data-lucide="calendar-check" class="h-4 w-4"></i>
+                    <span class="text-xs">Care</span>
+                </button>
+                <button class="garden-nav-tab" data-view="database" title="Plant Database">
+                    <i data-lucide="book-open" class="h-4 w-4"></i>
+                    <span class="text-xs">Database</span>
+                </button>
+                <button class="garden-nav-tab" data-view="harvestLog" title="Harvest Log">
+                    <i data-lucide="line-chart" class="h-4 w-4"></i>
+                    <span class="text-xs">Harvest</span>
+                </button>
+                <!-- More button for additional options -->
+                <button class="garden-nav-tab mobile-menu-toggle" title="More Options">
+                    <i data-lucide="more-horizontal" class="h-4 w-4"></i>
+                    <span class="text-xs">More</span>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation - Primary Actions + Hamburger -->
+            <div class="flex md:hidden p-3 justify-between items-center">
+                <!-- Primary mobile actions -->
+                <div class="flex gap-2">
+                    <button class="garden-nav-tab garden-nav-tab-mobile" data-view="dashboard" title="Dashboard">
+                        <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
                     </button>
-                    <button id="show-database-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="book-open" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Database
+                    <button class="garden-nav-tab garden-nav-tab-mobile" data-view="myGarden" title="My Garden">
+                        <i data-lucide="home" class="h-5 w-5"></i>
                     </button>
-                    <button id="show-my-garden-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="home" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>My Garden
+                    <button class="garden-nav-tab garden-nav-tab-mobile" data-view="calendar" title="Calendar">
+                        <i data-lucide="calendar" class="h-5 w-5"></i>
                     </button>
-                    <button id="show-layout-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="layout-grid" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Layout
+                    <button class="garden-nav-tab garden-nav-tab-mobile" data-view="careSchedule" title="Care">
+                        <i data-lucide="calendar-check" class="h-5 w-5"></i>
                     </button>
-                    <button id="show-calendar-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="calendar" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Calendar
+                </div>
+                
+                <!-- Hamburger menu button -->
+                <button class="garden-nav-tab garden-nav-tab-mobile mobile-menu-toggle" title="Menu">
+                    <i data-lucide="menu" class="h-5 w-5 hamburger-icon"></i>
+                    <i data-lucide="x" class="h-5 w-5 close-icon hidden"></i>
+                </button>
+            </div>
+
+            <!-- Mobile/Tablet Menu Dropdown -->
+            <div class="mobile-menu hidden border-t border-white/20 p-3 bg-white/40 backdrop-blur-sm rounded-b-2xl">
+                <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-view="database">
+                        <i data-lucide="book-open" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Database</span>
                     </button>
-                    <button id="show-companions-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="users" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Companions
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-view="layout">
+                        <i data-lucide="layout-grid" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Layout</span>
                     </button>
-                    <button id="show-care-schedule-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="calendar-check" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Care
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-view="companions">
+                        <i data-lucide="users" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Companions</span>
                     </button>
-                    <button id="show-activity-log-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="bug-play" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Activity
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-view="activityLog">
+                        <i data-lucide="bug-play" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Activity</span>
                     </button>
-                    <button id="show-pest-disease-guide-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="shield-alert" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Pest Guide
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-view="pestDiseaseGuide">
+                        <i data-lucide="shield-alert" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Pest Guide</span>
                     </button>
-                    <button id="show-harvest-log-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="line-chart" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Harvest
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-view="harvestLog">
+                        <i data-lucide="line-chart" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Harvest</span>
                     </button>
-                    <button id="show-ideas-btn" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="lightbulb" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Ideas
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-view="ideas">
+                        <i data-lucide="lightbulb" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Ideas</span>
                     </button>
-                    <button data-action="open-settings" class="nav-btn flex-grow px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 text-text-muted hover:bg-white/50 hover:shadow-md group">
-                        <i data-lucide="settings" class="inline-block h-4 w-4 mr-2 group-hover:scale-110 transition-transform"></i>Settings
+                    <button class="garden-nav-tab garden-nav-tab-mobile-menu" data-action="open-settings">
+                        <i data-lucide="settings" class="h-5 w-5"></i>
+                        <span class="text-xs mt-1">Settings</span>
                     </button>
                 </div>
             </div>
-        </div>
+        </nav>
 
         <div id="dashboard-view" class="hidden"></div>
         <div id="database-view" class="hidden"></div>

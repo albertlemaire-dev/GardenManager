@@ -464,21 +464,23 @@ class AgenticUI {
     }
 
     switchView(view) {
-        // Update navigation
-        document.querySelectorAll('.nav-btn').forEach(btn => {
+        const panel = document.getElementById('agentic-interface');
+        
+        // Update navigation - scope to the agentic interface
+        panel.querySelectorAll('.nav-btn').forEach(btn => {
             btn.classList.remove('active', 'bg-white/20', 'text-white');
             btn.classList.add('text-white/70');
         });
         
-        document.querySelector(`[data-view="${view}"]`).classList.add('active', 'bg-white/20', 'text-white');
-        document.querySelector(`[data-view="${view}"]`).classList.remove('text-white/70');
+        panel.querySelector(`[data-view="${view}"]`).classList.add('active', 'bg-white/20', 'text-white');
+        panel.querySelector(`[data-view="${view}"]`).classList.remove('text-white/70');
 
-        // Update content
-        document.querySelectorAll('.view-content').forEach(content => {
+        // Update content - scope to the agentic interface only
+        panel.querySelectorAll('.view-content').forEach(content => {
             content.classList.add('hidden');
         });
         
-        document.getElementById(`${view}-view`).classList.remove('hidden');
+        panel.querySelector(`#${view}-view`).classList.remove('hidden');
         this.currentView = view;
     }
 

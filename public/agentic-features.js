@@ -46,6 +46,9 @@ class AgenticGardenFeatures {
         // Initialize agent dashboard
         this.initializeAgentDashboard();
         
+        // Restore session AI content if available
+        this.restoreSessionAIContent();
+        
         // Start monitoring (disabled for manual testing)
         // this.startMonitoring();
         console.log('Enhanced Agentic Garden Features initialized');
@@ -710,20 +713,39 @@ class AgenticGardenFeatures {
     processAgentResult(agentType, result) {
         console.log(`Agent ${agentType} result:`, result);
         
-        // Update AI content area with result
-        const aiContent = document.getElementById('ai-content');
-        if (aiContent && result.success) {
-            const resultData = result.recommendations || result.analysis || result.optimization || result.plan || result.analysis;
-            aiContent.innerHTML = `
-                <div class="agent-result">
-                    <h4 class="font-medium text-text-base mb-2">${agentType.replace(/([A-Z])/g, ' $1').trim()} Results</h4>
-                    <div class="text-sm text-text-muted">${this.formatAgentResult(resultData)}</div>
-                </div>
-            `;
+        // Extract the right content based on agent type and server response structure
+        let resultData = null;
+        if (result.success) {
+            switch (agentType) {
+                case 'proactiveCare':
+                    resultData = result.recommendations;
+                    break;
+                case 'healthMonitor':
+                    resultData = result.healthAssessment;
+                    break;
+                case 'harvestOptimizer':
+                    resultData = result.harvestSchedule;
+                    break;
+                case 'gardenPlanner':
+                    resultData = result.plan;
+                    break;
+                case 'environmentalIntelligence':
+                    resultData = result.analysis;
+                    break;
+                default:
+                    resultData = result.analysis || result.recommendations || result.plan;
+            }
         }
         
-        // Store results for future reference
+        // Update main dashboard AI content area with result
+        this.updateMainDashboardAIContent(agentType, resultData);
+        
+        // Add "View Results" button to the agent dashboard
+        this.addViewResultsButton(agentType, resultData);
+        
+        // Store results for future reference (both session and permanent)
         this.storeAgentResult(agentType, result);
+        this.saveAgentResultPermanently(agentType, resultData);
     }
 
     formatAgentResult(result) {
@@ -732,13 +754,327 @@ class AgenticGardenFeatures {
         }
         
         if (typeof result === 'object') {
-            return Object.entries(result)
-                .slice(0, 3) // Show first 3 items
-                .map(([key, value]) => `<strong>${key}:</strong> ${JSON.stringify(value).substring(0, 100)}...`)
-                .join('<br>');
+            // Look for the main content field (analysis, optimization, plan)
+            if (result.analysis) {
+                return result.analysis;
+            }
+            if (result.optimization) {
+                return result.optimization;
+            }
+            if (result.plan) {
+                return result.plan;
+            }
+            
+            // Fallback for other object structures
+            const mainContent = Object.values(result).find(value => typeof value === 'string' && value.length > 50);
+            if (mainContent) {
+                return mainContent;
+            }
+            
+            return 'Results received successfully';
         }
         
         return 'Results received successfully';
+    }
+
+    addViewResultsButton(agentType, resultData) {
+        const agentCard = document.querySelector(`[data-agent="${agentType}"]`);
+        if (agentCard && resultData) {
+            // Remove existing view results button if it exists
+            const existingButton = agentCard.querySelector('.view-results-btn');
+            if (existingButton) {
+                existingButton.remove();
+            }
+            
+            // Add view results button next to the run button
+            const runButton = agentCard.querySelector('button');
+            if (runButton) {
+                const viewButton = document.createElement('button');
+                viewButton.className = 'view-results-btn text-sm bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 ml-1';
+                viewButton.textContent = 'View';
+                viewButton.onclick = () => this.showAgentResultModal(agentType, resultData);
+                
+                runButton.parentNode.appendChild(viewButton);
+            }
+        }
+    }
+    
+    showAgentResultModal(agentType, resultData) {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
+        modal.innerHTML = `
+            <div class="bg-surface rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-text-base">${agentType.replace(/([A-Z])/g, ' $1').trim()} Results</h3>
+                    <button onclick="this.closest('.fixed').remove()" class="p-1 hover:bg-accent rounded">
+                        <i data-lucide="x" class="h-4 w-4"></i>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto">
+                    <div class="text-sm text-text-base whitespace-pre-wrap leading-relaxed">${this.formatAgentResult(resultData)}</div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-accent">
+                    <button onclick="this.closest('.fixed').remove()" 
+                            class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-primary/90">
+                        Close
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        lucide.createIcons();
+    }
+
+    updateMainDashboardAIContent(agentType, resultData) {
+        const aiContent = document.getElementById('ai-content');
+        if (aiContent && resultData) {
+            const formattedResult = this.formatAgentResult(resultData);
+            const timestamp = new Date().toLocaleString();
+            
+            aiContent.innerHTML = `
+                <div class="agent-result bg-white/70 rounded-lg p-4 border border-primary/20">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-semibold text-text-base flex items-center gap-2">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            ${agentType.replace(/([A-Z])/g, ' $1').trim()} Results
+                        </h4>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-text-muted">${timestamp}</span>
+                            <button onclick="agenticFeatures.showAgentResultModal('${agentType}', \`${formattedResult.replace(/`/g, '\\`')}\`)" 
+                                    class="text-xs bg-primary text-white px-2 py-1 rounded hover:bg-primary/90">
+                                View Full
+                            </button>
+                            <button onclick="agenticFeatures.showAgentHistoryModal('${agentType}')" 
+                                    class="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                                History
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-sm text-text-base whitespace-pre-wrap max-h-32 overflow-y-auto">
+                        ${formattedResult.length > 300 ? formattedResult.substring(0, 300) + '...' : formattedResult}
+                    </div>
+                </div>
+            `;
+            
+            // Store in session storage for persistence during session
+            sessionStorage.setItem('currentAIResult', JSON.stringify({
+                agentType,
+                resultData,
+                timestamp: new Date().toISOString()
+            }));
+        }
+    }
+    
+    restoreSessionAIContent() {
+        const storedResult = sessionStorage.getItem('currentAIResult');
+        if (storedResult) {
+            try {
+                const { agentType, resultData } = JSON.parse(storedResult);
+                this.updateMainDashboardAIContent(agentType, resultData);
+            } catch (error) {
+                console.error('Error restoring AI content:', error);
+            }
+        }
+    }
+    
+    async saveAgentResultPermanently(agentType, resultData) {
+        if (!resultData) return;
+        
+        const agentResult = {
+            agentType,
+            result: resultData,
+            timestamp: new Date().toISOString(),
+            date: new Date().toDateString()
+        };
+        
+        try {
+            const response = await fetch('/api/agent-results', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(agentResult)
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to save agent result: ${response.status}`);
+            }
+            
+            console.log(`Agent result saved permanently: ${agentType}`);
+        } catch (error) {
+            console.error('Error saving agent result permanently:', error);
+            // Fallback to localStorage if server fails
+            this.saveAgentResultToLocalStorage(agentResult);
+        }
+    }
+    
+    saveAgentResultToLocalStorage(agentResult) {
+        const storageKey = 'permanentAgentResults';
+        const results = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        results.push(agentResult);
+        
+        // Keep only last 100 results to prevent storage overflow
+        if (results.length > 100) {
+            results.splice(0, results.length - 100);
+        }
+        
+        localStorage.setItem(storageKey, JSON.stringify(results));
+    }
+    
+    async getAgentResultsByDate(date) {
+        const dateString = new Date(date).toDateString();
+        
+        try {
+            const response = await fetch(`/api/agent-results?date=${encodeURIComponent(dateString)}`);
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.error('Error fetching agent results by date:', error);
+        }
+        
+        // Fallback to localStorage
+        const results = JSON.parse(localStorage.getItem('permanentAgentResults') || '[]');
+        return results.filter(result => result.date === dateString);
+    }
+    
+    async getAllAgentResults() {
+        try {
+            const response = await fetch('/api/agent-results');
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.error('Error fetching all agent results:', error);
+        }
+        
+        // Fallback to localStorage
+        return JSON.parse(localStorage.getItem('permanentAgentResults') || '[]');
+    }
+    
+    showAgentHistoryModal(agentType) {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
+        modal.innerHTML = `
+            <div class="bg-surface rounded-xl p-6 max-w-4xl w-full max-h-[80vh] overflow-hidden flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-text-base">${agentType.replace(/([A-Z])/g, ' $1').trim()} History</h3>
+                    <div class="flex gap-2">
+                        <input type="date" id="history-date-picker" class="px-2 py-1 border rounded text-sm">
+                        <button onclick="agenticFeatures.filterHistoryByDate()" class="px-3 py-1 bg-primary text-white rounded text-sm hover:bg-primary/90">
+                            Filter
+                        </button>
+                        <button onclick="this.closest('.fixed').remove()" class="p-1 hover:bg-accent rounded">
+                            <i data-lucide="x" class="h-4 w-4"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-y-auto" id="history-content">
+                    <div class="text-center text-text-muted">Loading history...</div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        lucide.createIcons();
+        
+        // Load and display history
+        this.loadAgentHistory(agentType);
+    }
+    
+    async loadAgentHistory(agentType) {
+        const historyContent = document.getElementById('history-content');
+        if (!historyContent) return;
+        
+        try {
+            const allResults = await this.getAllAgentResults();
+            const agentResults = allResults.filter(result => result.agentType === agentType);
+            
+            if (agentResults.length === 0) {
+                historyContent.innerHTML = '<div class="text-center text-text-muted">No history found for this agent.</div>';
+                return;
+            }
+            
+            // Group by date
+            const groupedResults = agentResults.reduce((acc, result) => {
+                const date = result.date;
+                if (!acc[date]) acc[date] = [];
+                acc[date].push(result);
+                return acc;
+            }, {});
+            
+            // Sort dates in descending order
+            const sortedDates = Object.keys(groupedResults).sort((a, b) => new Date(b) - new Date(a));
+            
+            historyContent.innerHTML = sortedDates.map(date => `
+                <div class="mb-6">
+                    <h4 class="font-semibold text-text-base mb-3 pb-2 border-b border-accent">${date}</h4>
+                    <div class="space-y-3">
+                        ${groupedResults[date].map(result => `
+                            <div class="bg-white/50 rounded-lg p-4 border border-accent/20">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs text-text-muted">${new Date(result.timestamp).toLocaleTimeString()}</span>
+                                    <button onclick="agenticFeatures.showAgentResultModal('${result.agentType}', \`${result.result.replace(/`/g, '\\`')}\`)" 
+                                            class="text-xs bg-primary text-white px-2 py-1 rounded hover:bg-primary/90">
+                                        View Full
+                                    </button>
+                                </div>
+                                <div class="text-sm text-text-base whitespace-pre-wrap max-h-20 overflow-y-auto">
+                                    ${result.result.length > 200 ? result.result.substring(0, 200) + '...' : result.result}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+        } catch (error) {
+            console.error('Error loading agent history:', error);
+            historyContent.innerHTML = '<div class="text-center text-red-500">Error loading history.</div>';
+        }
+    }
+    
+    async filterHistoryByDate() {
+        const datePicker = document.getElementById('history-date-picker');
+        const historyContent = document.getElementById('history-content');
+        
+        if (!datePicker.value || !historyContent) return;
+        
+        try {
+            const results = await this.getAgentResultsByDate(datePicker.value);
+            
+            if (results.length === 0) {
+                historyContent.innerHTML = '<div class="text-center text-text-muted">No results found for this date.</div>';
+                return;
+            }
+            
+            historyContent.innerHTML = `
+                <div class="space-y-3">
+                    ${results.map(result => `
+                        <div class="bg-white/50 rounded-lg p-4 border border-accent/20">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <span class="font-medium text-text-base">${result.agentType.replace(/([A-Z])/g, ' $1').trim()}</span>
+                                    <span class="text-xs text-text-muted ml-2">${new Date(result.timestamp).toLocaleTimeString()}</span>
+                                </div>
+                                <button onclick="agenticFeatures.showAgentResultModal('${result.agentType}', \`${result.result.replace(/`/g, '\\`')}\`)" 
+                                        class="text-xs bg-primary text-white px-2 py-1 rounded hover:bg-primary/90">
+                                    View Full
+                                </button>
+                            </div>
+                            <div class="text-sm text-text-base whitespace-pre-wrap max-h-20 overflow-y-auto">
+                                ${result.result.length > 200 ? result.result.substring(0, 200) + '...' : result.result}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+        } catch (error) {
+            console.error('Error filtering history by date:', error);
+            historyContent.innerHTML = '<div class="text-center text-red-500">Error filtering results.</div>';
+        }
     }
 
     storeAgentResult(agentType, result) {
