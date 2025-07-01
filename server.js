@@ -201,7 +201,7 @@ app.post('/api/analyze-transcript', async (req, res) => {
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are an expert garden data analyst with advanced natural language processing skills. You excel at extracting structured, actionable information from conversational speech about plants and gardening. Always respond with valid, well-formatted JSON that precisely matches the requested schema.'
+                        content: 'You are an expert garden data analyst with advanced NLP skills. Extract structured, actionable plant observations from conversational speech, always returning exactly the requested JSON schema without extra commentary.'
                     },
                     {
                         role: 'user',

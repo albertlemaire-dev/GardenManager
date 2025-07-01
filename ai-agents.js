@@ -64,151 +64,324 @@ async function callOpenAI(systemPrompt, userPrompt, model = 'gpt-4o-mini') {
 
 // 1. PROACTIVE CARE AGENT
 async function generateProactiveCareRecommendations(weatherData, plantData, userPreferences = {}) {
-    const systemPrompt = `You are an expert gardening care coordinator with 25+ years of experience. You excel at:
-    
-    1. WEATHER-RESPONSIVE CARE: Monitoring weather patterns and adjusting care schedules
-    2. INTELLIGENT SCHEDULING: Creating care schedules based on plant needs and conditions
-    3. PRIORITY NOTIFICATIONS: Sending timely, actionable notifications with urgency levels
-    4. RESOURCE OPTIMIZATION: Balancing water usage, fertilizer application, and energy consumption
-    5. PERSONALIZED CARE: Understanding user notes, observations, and past experiences
-    
-    IMPORTANT: Always consider the user's notes, activity history, and observations when making recommendations. Reference specific plants by name and acknowledge any issues or successes the user has documented.
-    
-    Provide responses that are time-sensitive, actionable, prioritized by urgency, weather-aware, personalized to user's notes, and specific to individual plant needs.
-    
-    Return your response as clear, human-readable text with specific recommendations, organized by priority level. Use bullet points and clear headings. Be conversational but professional. Reference the user's notes and observations when relevant.`;
+    const systemPrompt = `
+You are "AgriSense," a veteran horticultural strategist with 25+ years of experience.
 
-    const userPrompt = `Analyze current garden conditions and provide personalized care recommendations:
-    
-    Weather Data: ${JSON.stringify(weatherData, null, 2)}
-    Plant Data (includes user notes and observations): ${JSON.stringify(plantData, null, 2)}
-    User Preferences: ${JSON.stringify(userPreferences, null, 2)}
-    
-    Please pay special attention to any user notes, observations, or issues mentioned in the plant data. Incorporate this personal knowledge into your recommendations.`;
+- Always return JSON with "tasks" array, each task having: { "title", "dueDate", "priority":0‒1, "durationMinutes", "details" }.
+- Group tasks by urgency: HIGH, MEDIUM, LOW.
+- Include a "resourceSummary" with water/fertilizer estimates.
+- Use local timezone for dueDate.
+- IMPORTANT: Always consider the user's notes, activity history, and observations when making recommendations.
+- Reference specific plants by name and acknowledge any issues or successes the user has documented.
+- Provide personalized care based on documented plant history and user observations.
+`;
+
+    const userPrompt = `
+Context:
+  - Current Weather: ${JSON.stringify(weatherData)}
+  - Garden Plants (includes user notes and observations): ${JSON.stringify(plantData)}
+  - User Preferences: ${JSON.stringify(userPreferences)}
+
+Please pay special attention to any user notes, observations, or issues mentioned in the plant data. Incorporate this personal knowledge into your recommendations.
+
+Produce:
+{
+  "tasks": [
+    {
+      "title": "Water tomatoes based on recent drought stress notes",
+      "dueDate": "2025-01-02T08:00:00-08:00",
+      "priority": 0.9,
+      "durationMinutes": 15,
+      "details": "Apply 1 gallon to each plant at soil level. User noted wilting yesterday."
+    }
+  ],
+  "resourceSummary": {
+    "waterGallons": 5,
+    "fertilizerOz": 2
+  },
+  "personalizedNotes": "Specific observations based on user's documented plant history",
+  "urgencyGroups": {
+    "HIGH": [],
+    "MEDIUM": [],
+    "LOW": []
+  }
+}`;
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
         return { analysis: response };
     } catch (error) {
         console.error('Proactive Care Agent error:', error);
-        return { analysis: "Unable to analyze garden conditions at this time. Please perform a manual garden inspection and check back later." };
+        return { analysis: JSON.stringify({
+            tasks: [],
+            resourceSummary: { waterGallons: 0, fertilizerOz: 0 },
+            personalizedNotes: "Unable to analyze garden conditions at this time. Please perform a manual garden inspection and check back later.",
+            urgencyGroups: { HIGH: [], MEDIUM: [], LOW: [] }
+        }) };
     }
 }
 
 // 2. PLANT HEALTH MONITOR AGENT
 async function analyzeePlantHealth(plantData, healthHistory = []) {
-    const systemPrompt = `You are a certified plant pathologist and health monitoring specialist. Your expertise includes:
-    
-    1. VISUAL HEALTH ANALYSIS: Expert identification of diseases, pests, and nutrient deficiencies
-    2. GROWTH TRACKING: Monitoring plant development and identifying anomalies
-    3. PREDICTIVE DIAGNOSTICS: Early detection of potential issues before they become critical
-    4. TREATMENT RECOMMENDATIONS: Specific, actionable treatment plans with timelines
-    5. PERSONALIZED ANALYSIS: Understanding user observations, notes, and documented symptoms
-    
-    IMPORTANT: Always consider the user's notes, observations, and documented symptoms when analyzing plant health. Reference specific plants by name and acknowledge any concerns or successes the user has noted.
-    
-    Provide systematic analysis with confidence levels, multiple treatment options, prevention strategies, monitoring schedules, and personalized attention to user concerns.
-    
-    Return your response as clear, human-readable text. Include an overall health assessment, any issues found, specific treatment recommendations, and preventive measures. Use clear headings and bullet points. Address any specific concerns mentioned in user notes.`;
+    const systemPrompt = `
+You are "PathoDetect," a certified plant pathologist and health monitoring specialist.
 
-    const userPrompt = `Analyze plant health status with attention to user observations:
-    
-    Plant Data (includes user notes and observations): ${JSON.stringify(plantData, null, 2)}
-    Health History: ${JSON.stringify(healthHistory, null, 2)}
-    
-    Please carefully review any user notes, observations, or concerns documented for each plant. Address these specifically in your health analysis and recommendations.`;
+- Return JSON: {
+    "assessmentScore": 0‒1,
+    "issues": [{"type", "severity": 0‒1, "description", "plantName"}],
+    "treatments": [{"issueType", "options": [{"name", "timelineDays"}]}],
+    "prevention": [],
+    "monitoringSchedule": [{"task", "intervalDays"}],
+    "personalizedInsights": "Specific observations based on user notes"
+  }
+- Use clear, concise keys.
+- IMPORTANT: Always consider the user's notes, observations, and documented symptoms.
+- Reference specific plants by name and acknowledge any concerns or successes the user has noted.
+- Address specific concerns mentioned in user notes.
+`;
+
+    const userPrompt = `
+Plant Data (includes user notes and observations): ${JSON.stringify(plantData)}
+Health History: ${JSON.stringify(healthHistory)}
+
+Please carefully review any user notes, observations, or concerns documented for each plant. Address these specifically in your health analysis and recommendations.
+
+Expected JSON format:
+{
+  "assessmentScore": 0.85,
+  "issues": [
+    {
+      "type": "pest",
+      "severity": 0.6,
+      "description": "Aphids detected on tomato plant based on user's yellowing leaf notes",
+      "plantName": "Cherry Tomato #1"
+    }
+  ],
+  "treatments": [
+    {
+      "issueType": "pest",
+      "options": [
+        {"name": "Neem oil spray", "timelineDays": 7},
+        {"name": "Beneficial insects", "timelineDays": 14}
+      ]
+    }
+  ],
+  "prevention": ["Regular inspection", "Companion planting"],
+  "monitoringSchedule": [
+    {"task": "Check for aphids", "intervalDays": 3}
+  ],
+  "personalizedInsights": "Based on your notes about yellowing leaves, this appears to be early aphid damage..."
+}`;
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
         return { analysis: response };
     } catch (error) {
         console.error('Health Monitor Agent error:', error);
-        return { analysis: "Unable to analyze plant health at this time. Please perform a visual inspection of your plants and check for any signs of disease, pests, or nutrient deficiencies. Try running the health monitor again later." };
+        return { analysis: JSON.stringify({
+            assessmentScore: 0.5,
+            issues: [],
+            treatments: [],
+            prevention: [],
+            monitoringSchedule: [],
+            personalizedInsights: "Unable to analyze plant health at this time. Please perform a visual inspection of your plants and check for any signs of disease, pests, or nutrient deficiencies."
+        }) };
     }
 }
 
 // 3. HARVEST OPTIMIZER AGENT
 async function optimizeHarvests(plantData, weatherData, storageCapacity = {}) {
-    const systemPrompt = `You are a master harvest coordinator and post-harvest specialist. Your expertise covers:
-    
-    1. MATURITY ASSESSMENT: Precise determination of optimal harvest timing for maximum quality
-    2. HARVEST PREDICTION: Accurate forecasting of harvest windows with quantity estimates
-    3. STORAGE OPTIMIZATION: Expert recommendations for post-harvest handling and preservation
-    4. MARKET TIMING: Coordination of harvest timing with consumption needs
-    
-    Provide exact harvest timing, optimal methods, post-harvest handling, storage conditions, and processing opportunities.
-    
-    Return your response as clear, human-readable text. Include harvest schedules, optimal harvest times, storage recommendations, and yield predictions. Use clear headings and practical advice.`;
+    const systemPrompt = `
+You are "HarvestPro," a global post-harvest expert and harvest coordinator.
 
-    const userPrompt = `Optimize harvest timing and storage:
-    
-    Plant Data: ${JSON.stringify(plantData, null, 2)}
-    Weather Data: ${JSON.stringify(weatherData, null, 2)}
-    Storage Capacity: ${JSON.stringify(storageCapacity, null, 2)}`;
+- Return JSON:
+  {
+    "harvestWindows": [{"plant", "startDate", "endDate", "quantityEstimate"}],
+    "storage": [{"method", "temperatureF", "humidityPct", "durationDays"}],
+    "yieldPrediction": [{"plant", "pounds"}],
+    "personalizedTiming": "Specific recommendations based on user's plant notes and observations"
+  }
+- Provide dates in ISO with timezone.
+- IMPORTANT: Consider user notes about plant maturity, previous harvest experiences, and documented growth patterns.
+- Reference specific plants by name and acknowledge user's harvest history.
+`;
+
+    const userPrompt = `
+Plant Data (includes user notes and observations): ${JSON.stringify(plantData)}
+Weather Forecast: ${JSON.stringify(weatherData)}
+Storage Capacity: ${JSON.stringify(storageCapacity)}
+
+Please consider any user notes about plant maturity, harvest timing preferences, and storage experiences.
+
+Expected JSON format:
+{
+  "harvestWindows": [
+    {
+      "plant": "Cherry Tomatoes #1",
+      "startDate": "2025-01-10T00:00:00-08:00",
+      "endDate": "2025-01-20T00:00:00-08:00",
+      "quantityEstimate": "5 lbs"
+    }
+  ],
+  "storage": [
+    {
+      "method": "Counter ripening",
+      "temperatureF": 65,
+      "humidityPct": 85,
+      "durationDays": 7
+    }
+  ],
+  "yieldPrediction": [
+    {"plant": "Cherry Tomatoes #1", "pounds": 8}
+  ],
+  "personalizedTiming": "Based on your notes about slow ripening last season, recommend waiting an extra 3-5 days..."
+}`;
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
         return { optimization: response };
     } catch (error) {
         console.error('Harvest Optimizer Agent error:', error);
-        return { optimization: "Unable to optimize harvest timing at this time. Please check your plants for signs of maturity and harvest readiness manually. Try running the harvest optimizer again later." };
+        return { optimization: JSON.stringify({
+            harvestWindows: [],
+            storage: [],
+            yieldPrediction: [],
+            personalizedTiming: "Unable to optimize harvest timing at this time. Please check your plants for signs of maturity and harvest readiness manually."
+        }) };
     }
 }
 
 // 4. GARDEN PLANNER AGENT
 async function generateGardenPlan(currentPlants, availableSpace, seasonData, planningGoals = {}) {
-    const systemPrompt = `You are a master garden designer and agricultural systems specialist. Your expertise encompasses:
-    
-    1. COMPANION PLANTING: Expert knowledge of beneficial plant relationships and pest deterrence
-    2. CROP ROTATION: Multi-season planning for soil health and yield optimization
-    3. LAYOUT OPTIMIZATION: Spatial design for maximum efficiency and accessibility
-    4. SUCCESSION PLANNING: Strategic timing for continuous harvests and season extension
-    
-    Consider soil health, pest management through diversity, space utilization, seasonal transitions, and labor efficiency.
-    
-    Return your response as clear, human-readable text. Include garden planning recommendations, companion planting suggestions, layout optimization ideas, and seasonal tasks. Use clear headings and practical advice.`;
+    const systemPrompt = `
+You are "GardenMaestro," an award-winning permaculture designer and garden planning specialist.
 
-    const userPrompt = `Generate comprehensive garden plan:
-    
-    Current Plants: ${JSON.stringify(currentPlants, null, 2)}
-    Available Space: ${JSON.stringify(availableSpace, null, 2)}
-    Season Data: ${JSON.stringify(seasonData, null, 2)}
-    Planning Goals: ${JSON.stringify(planningGoals, null, 2)}`;
+- Return JSON:
+  {
+    "layouts": [
+      {"bedId", "plantPositions": [{"plant", "xPercent", "yPercent"}]}
+    ],
+    "companionPairs": [{"plantA", "plantB", "benefit"}],
+    "cropRotation": [{"year", "bedId", "crop"}],
+    "seasonalTasks": [{"task", "month"}],
+    "personalizedPlan": "Specific recommendations based on user's garden history and preferences"
+  }
+- IMPORTANT: Consider user notes about plant performance, space constraints, and previous garden experiences.
+- Reference specific successful plant combinations the user has documented.
+`;
+
+    const userPrompt = `
+Current Plants (includes user notes and observations): ${JSON.stringify(currentPlants)}
+Available Space: ${JSON.stringify(availableSpace)}
+Season Data: ${JSON.stringify(seasonData)}
+Planning Goals: ${JSON.stringify(planningGoals)}
+
+Please consider any user notes about plant performance, companion planting successes/failures, and space utilization preferences.
+
+Expected JSON format:
+{
+  "layouts": [
+    {
+      "bedId": "bed1",
+      "plantPositions": [
+        {"plant": "Tomatoes", "xPercent": 25, "yPercent": 50},
+        {"plant": "Basil", "xPercent": 75, "yPercent": 50}
+      ]
+    }
+  ],
+  "companionPairs": [
+    {"plantA": "Tomatoes", "plantB": "Basil", "benefit": "Pest deterrent"}
+  ],
+  "cropRotation": [
+    {"year": 2025, "bedId": "bed1", "crop": "Nightshades"},
+    {"year": 2026, "bedId": "bed1", "crop": "Legumes"}
+  ],
+  "seasonalTasks": [
+    {"task": "Plant summer tomatoes", "month": "March"}
+  ],
+  "personalizedPlan": "Based on your notes about tomato success in bed #2 last year, recommend similar placement..."
+}`;
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
         return { plan: response };
     } catch (error) {
         console.error('Garden Planner Agent error:', error);
-        return { plan: "Unable to generate garden plan at this time. Please review your current garden layout manually and consider companion planting opportunities. Try running the garden planner again later." };
+        return { plan: JSON.stringify({
+            layouts: [],
+            companionPairs: [],
+            cropRotation: [],
+            seasonalTasks: [],
+            personalizedPlan: "Unable to generate garden plan at this time. Please review your current garden layout manually and consider companion planting opportunities."
+        }) };
     }
 }
 
 // 5. ENVIRONMENTAL INTELLIGENCE AGENT
 async function analyzeEnvironmentalConditions(gardenLayout, weatherHistory, plantPerformance) {
-    const systemPrompt = `You are an expert climatologist and microclimate analyst specializing in garden environments. Your capabilities include:
-    
-    1. WEATHER PATTERN ANALYSIS: Deep understanding of local weather trends and climate change impacts
-    2. MICROCLIMATE MAPPING: Detailed analysis of garden-specific conditions including sun/shade patterns
-    3. SEASONAL ADAPTATION: Strategic recommendations for seasonal transitions and climate resilience
-    4. PREDICTIVE MODELING: Forecasting environmental impacts on plant health and growth
-    
-    Integrate historical weather data, real-time monitoring, garden-specific microclimate factors, and climate adaptation strategies.
-    
-    Return your response as clear, human-readable text. Include environmental analysis, microclimate insights, weather pattern observations, and optimization suggestions. Use clear headings and practical recommendations.`;
+    const systemPrompt = `
+You are "EcoScope," a climatologist focused on garden microclimates and environmental analysis.
 
-    const userPrompt = `Analyze environmental conditions and provide insights:
-    
-    Garden Layout: ${JSON.stringify(gardenLayout, null, 2)}
-    Weather History: ${JSON.stringify(weatherHistory, null, 2)}
-    Plant Performance: ${JSON.stringify(plantPerformance, null, 2)}`;
+- Return JSON:
+  {
+    "microclimateZones": [{"zoneId", "description", "coordinates"}],
+    "weatherPatterns": [{"patternName", "impact", "recommendation"}],
+    "climateRisks": [{"risk", "severity": 0‒1}],
+    "adaptations": [{"action", "idealTiming", "notes"}],
+    "personalizedInsights": "Specific observations based on user's environmental notes and plant performance data"
+  }
+- IMPORTANT: Consider user notes about microclimates, plant performance in different areas, and weather observations.
+- Reference specific garden zones and documented environmental challenges.
+`;
+
+    const userPrompt = `
+Garden Layout (includes user notes and observations): ${JSON.stringify(gardenLayout)}
+Weather History: ${JSON.stringify(weatherHistory)}
+Plant Performance (includes user observations): ${JSON.stringify(plantPerformance)}
+
+Please consider any user notes about microclimates, wind patterns, sun/shade observations, and plant performance in different garden areas.
+
+Expected JSON format:
+{
+  "microclimateZones": [
+    {
+      "zoneId": "southFence",
+      "description": "Hot afternoon sun with wind protection",
+      "coordinates": {"x": 25, "y": 75}
+    }
+  ],
+  "weatherPatterns": [
+    {
+      "patternName": "Afternoon wind tunnel",
+      "impact": "Dries out plants quickly",
+      "recommendation": "Install windbreak or move sensitive plants"
+    }
+  ],
+  "climateRisks": [
+    {"risk": "Heat stress in southwest corner", "severity": 0.7}
+  ],
+  "adaptations": [
+    {
+      "action": "Install shade cloth",
+      "idealTiming": "Before summer heat arrives",
+      "notes": "Focus on tomato area per user's heat damage notes"
+    }
+  ],
+  "personalizedInsights": "Based on your notes about wind damage to tomatoes last summer, recommend relocating to protected area..."
+}`;
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
         return { analysis: response };
     } catch (error) {
         console.error('Environmental Intelligence Agent error:', error);
-        return { analysis: "Unable to analyze environmental conditions at this time. Please observe your garden's microclimates manually and note any weather patterns affecting your plants. Try running the environmental intelligence agent again later." };
+        return { analysis: JSON.stringify({
+            microclimateZones: [],
+            weatherPatterns: [],
+            climateRisks: [],
+            adaptations: [],
+            personalizedInsights: "Unable to analyze environmental conditions at this time. Please observe your garden's microclimates manually and note any weather patterns affecting your plants."
+        }) };
     }
 }
 

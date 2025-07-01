@@ -3843,13 +3843,20 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
             const attemptText = isSecondAttempt ? `Searching again with ${modelDisplay} for better accuracy...` : `Analyzing plant with ${modelDisplay}...`;
             resultsContainer.innerHTML = `<div class="flex items-center gap-2 text-text-muted"><div class="loader"></div><span>${attemptText}</span></div>`;
 
-            let promptText = `Identify this plant. Provide the response in JSON format:
+            let promptText = `
+Task: Identify the plant in the image URL provided.
+
+Image URL: ${imageUrl}
+
+Output JSON schema (no extra fields):
 {
   "commonName": "exact common name",
-  "botanicalName": "scientific name if known",
-  "confidence": "high/medium/low",
-  "keyFeatures": "brief description of identifying features",
-  "facts": "2-3 interesting facts about this plant"
+  "botanicalName": "scientific name or null",
+  "confidence": 0.00-1.00,
+  "confidenceReason": "brief justification",
+  "keyFeatures": ["feature1","feature2"],
+  "distribution": ["native range","common habitats"],
+  "interestingFacts": ["fact1","fact2"]
 }`;
 
             if (isSecondAttempt) {
@@ -3867,7 +3874,14 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
                     messages: [
                         {
                             role: 'system',
-                            content: 'You are a professional botanist and plant identification specialist. Analyze images carefully and provide accurate plant identifications with botanical details.'
+                            content: `
+You are Dr. Greenleaf, a world-renowned botanist and plant ID expert with deep expertise in morphological analysis.
+
+- Use precise, technical botanical terminology.
+- Rigorously validate JSON output against the schema.
+- For confidence, include a numeric score (0-1) and a justification sentence.
+- If uncertain, explain which visual cues are missing.
+`
                         },
                         {
                             role: 'user',
@@ -3899,15 +3913,28 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
             try {
                 // Try to parse JSON response
                 const content = result.choices[0].message.content.trim();
-                plantData = JSON.parse(content);
+                const parsedData = JSON.parse(content);
+                
+                // Handle new optimized JSON structure
+                plantData = {
+                    commonName: parsedData.commonName || '',
+                    botanicalName: parsedData.botanicalName || '',
+                    confidence: parsedData.confidence || 0.5,
+                    confidenceReason: parsedData.confidenceReason || '',
+                    keyFeatures: Array.isArray(parsedData.keyFeatures) ? parsedData.keyFeatures.join(', ') : (parsedData.keyFeatures || ''),
+                    distribution: Array.isArray(parsedData.distribution) ? parsedData.distribution.join(', ') : (parsedData.distribution || ''),
+                    facts: Array.isArray(parsedData.interestingFacts) ? parsedData.interestingFacts.join(', ') : (parsedData.facts || parsedData.interestingFacts || '')
+                };
             } catch (parseError) {
                 // Fallback to simple text parsing
                 const content = result.choices[0].message.content.trim();
                 plantData = {
                     commonName: content,
                     botanicalName: '',
-                    confidence: 'medium',
+                    confidence: 0.5,
+                    confidenceReason: 'Fallback parsing used',
                     keyFeatures: '',
+                    distribution: '',
                     facts: ''
                 };
             }
@@ -4403,54 +4430,25 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
                 return plant ? plant.commonName : '';
             }).filter(name => name);
             
-            const prompt = `# Voice Transcript Analysis Task
+            const prompt = `
+Task: Convert the following raw transcript into structured plant observations.
+Transcript: "${transcript}"
+User's Plants: [${plantNames.join(", ")}]
 
-## Context
-You are an expert garden data analyst specializing in extracting structured information from natural speech about plants and gardening activities.
-
-## User's Current Garden Plants
-${plantNames.join(', ')}
-
-## Voice Transcript to Analyze
-"${transcript}"
-
-## Analysis Instructions
-
-### Primary Objectives:
-1. **Plant Identification**: Match spoken plant references to the user's actual plant list
-2. **Observation Extraction**: Identify specific, actionable observations about each plant
-3. **Context Preservation**: Maintain the original meaning and nuance of observations
-4. **Confidence Assessment**: Evaluate certainty of plant-observation matches
-
-### Matching Guidelines:
-- Exact name matches have highest priority
-- Accept common variations (e.g., "tomato" for "Tomato", "beans" for "Bean")
-- Consider plural/singular forms
-- Match partial names when context is clear (e.g., "the salvia" when only one salvia exists)
-- Be conservative with ambiguous references
-
-### Output Format (JSON):
+Output JSON (strict):
 {
   "plantUpdates": [
     {
-      "plantName": "exact name from user's plant list",
-      "notes": "specific observation with actionable details",
-      "confidence": "high|medium|low",
-      "category": "growth|health|harvest|care|pest|pollinator|general"
+      "plantName": "exact name",
+      "category": "growth|health|harvest|care|pest|pollinator|general",
+      "notes": "actionable observation",
+      "confidence": 0.00-1.00
     }
   ],
-  "generalNotes": "garden-wide observations not specific to individual plants",
-  "summary": "concise overview of the recording's main points",
+  "generalNotes": "garden-wide insights",
+  "summary": "concise overview",
   "timestamp": "${new Date().toISOString()}"
-}
-
-### Quality Standards:
-- Only include plants explicitly mentioned or clearly implied
-- Notes should be specific and actionable, not generic
-- Preserve technical terms and specific details mentioned
-- High confidence: Direct plant name + specific observation
-- Medium confidence: Implied plant reference + clear observation  
-- Low confidence: Ambiguous plant reference or vague observation`;
+}`;
 
             const response = await fetch('/api/analyze-transcript', {
                 method: 'POST',
