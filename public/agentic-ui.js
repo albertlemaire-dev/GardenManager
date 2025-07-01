@@ -21,6 +21,11 @@ class AgenticUI {
         this.setupEventListeners();
         this.createFloatingActionButton();
         
+        // Load stored agent results from previous sessions
+        setTimeout(() => {
+            this.updateAgentResultsDisplay();
+        }, 500);
+        
         // Auto-show interface on first load if API key is configured
         setTimeout(() => {
             const apiKey = localStorage.getItem('openai_api_key');
@@ -630,7 +635,77 @@ class AgenticUI {
 
     refreshData() {
         this.loadSystemStatus();
-        // Add more data refresh logic as needed
+        this.updateApiKeyStatus();
+        
+        // Ensure current view is still visible after refresh
+        if (this.currentView) {
+            this.switchView(this.currentView);
+        }
+        
+        // Update agent results display
+        this.updateAgentResultsDisplay();
+        
+        // Re-initialize any missing event handlers
+        this.reinitializeEventHandlers();
+    }
+    
+    updateAgentResultsDisplay() {
+        // Check if there are stored agent results that need to be re-displayed
+        const storedResults = this.getStoredAgentResults();
+        if (storedResults && storedResults.length > 0) {
+            const resultsContainer = document.getElementById('agent-results');
+            if (resultsContainer && resultsContainer.children.length === 0) {
+                // Re-display the most recent results if container is empty
+                storedResults.slice(0, 3).forEach(result => {
+                    this.displayAgentResults(result.agentId, result.data);
+                });
+            }
+        }
+    }
+    
+    getStoredAgentResults() {
+        try {
+            const stored = localStorage.getItem('recent_agent_results');
+            return stored ? JSON.parse(stored) : [];
+        } catch (error) {
+            console.error('Error loading stored agent results:', error);
+            return [];
+        }
+    }
+    
+    storeAgentResult(agentId, result) {
+        try {
+            const stored = this.getStoredAgentResults();
+            const newResult = {
+                agentId,
+                data: result,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Add to beginning and keep only last 5 results
+            stored.unshift(newResult);
+            const trimmed = stored.slice(0, 5);
+            
+            localStorage.setItem('recent_agent_results', JSON.stringify(trimmed));
+        } catch (error) {
+            console.error('Error storing agent result:', error);
+        }
+    }
+    
+    reinitializeEventHandlers() {
+        // Re-attach event listeners that might have been lost
+        const viewButtons = document.querySelectorAll('.view-full-results-btn');
+        viewButtons.forEach(button => {
+            if (!button.hasAttribute('data-listener-attached')) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const agentId = e.target.getAttribute('data-agent-id');
+                    const resultData = JSON.parse(e.target.getAttribute('data-result'));
+                    this.showFullResults(agentId, resultData);
+                });
+                button.setAttribute('data-listener-attached', 'true');
+            }
+        });
     }
 
     updateApiKeyStatus() {
@@ -928,13 +1003,25 @@ class AgenticUI {
 
         // Add a "View Details" button for full results
         resultHtml += `
-            <button class="text-xs text-blue-600 hover:text-blue-800 font-medium mt-2" 
-                    onclick="agenticUI.showFullResults('${agentId}', ${JSON.stringify(result).replace(/"/g, '&quot;')})">
+            <button class="view-full-results-btn text-xs text-blue-600 hover:text-blue-800 font-medium mt-2" 
+                    data-agent-id="${agentId}" data-result='${JSON.stringify(result).replace(/'/g, '&apos;')}'>
                 View Full Results →
             </button>
         `;
 
         resultCard.innerHTML = resultHtml;
+
+        // Add event listener for the view full results button
+        const viewButton = resultCard.querySelector('.view-full-results-btn');
+        if (viewButton) {
+            viewButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const agentId = e.target.getAttribute('data-agent-id');
+                const resultData = JSON.parse(e.target.getAttribute('data-result'));
+                this.showFullResults(agentId, resultData);
+            });
+            viewButton.setAttribute('data-listener-attached', 'true');
+        }
         
         // Add to results container (keep only last 3 results)
         if (resultsContainer.children.length >= 3) {
@@ -948,6 +1035,9 @@ class AgenticUI {
         }
         
         resultsContainer.insertBefore(resultCard, resultsContainer.firstChild);
+        
+        // Store the result for persistence
+        this.storeAgentResult(agentId, result);
         
         lucide.createIcons();
     }
@@ -1216,6 +1306,9 @@ let agenticUI;
 document.addEventListener('DOMContentLoaded', () => {
     agenticUI = new AgenticUI();
     agenticUI.initialize();
+    
+    // Make globally accessible for debugging and external access
+    window.agenticUI = agenticUI;
 });
 
 // Export for use in other scripts
