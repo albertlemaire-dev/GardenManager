@@ -1333,8 +1333,8 @@ class AgenticGardenFeatures {
     determinePriorityAgents(gardenData, weatherData) {
         const agents = [];
         
-        // Always run proactive care for scheduling
-        agents.push('proactiveCare');
+        // Only run agents when specifically needed (manual execution preferred)
+        // Removed automatic proactive care execution per user request
         
         // Check if any plants need health monitoring
         if (this.needsHealthMonitoring(gardenData)) {

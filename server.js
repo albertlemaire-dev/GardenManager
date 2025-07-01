@@ -125,7 +125,7 @@ app.post('/api/transcribe-audio', upload.single('audio'), async (req, res) => {
             filename: filename,
             contentType: contentType
         });
-        formData.append('model', 'whisper-1');
+        formData.append('model', 'gpt-4o-mini-transcribe');
         formData.append('response_format', 'json');
 
         // Call OpenAI Whisper API using form-data stream
@@ -197,7 +197,7 @@ app.post('/api/analyze-transcript', async (req, res) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'gpt-4o-mini',
+                model: 'gpt-4.1-nano',
                 messages: [
                     {
                         role: 'system',

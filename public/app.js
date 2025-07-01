@@ -3105,7 +3105,7 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
                     // Search again with gpt-4.1-mini
                     (async () => {
                         try {
-                            const retryResult = await attemptPlantIdentification(apiKey, imageUrl, 'gpt-4.1-mini', resultsContainer, null, searchCount + 1);
+                            const retryResult = await attemptPlantIdentification(apiKey, imageUrl, 'gpt-4.1-nano', resultsContainer, null, searchCount + 1);
                             displayIdentificationResults(retryResult, resultsContainer);
                             document.getElementById('run-ai-identification-btn').disabled = false;
                             lucide.createIcons();
@@ -3839,7 +3839,7 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
         
         try {
             // Update UI to show current attempt
-            const modelDisplay = model === 'gpt-4.1-nano' ? 'GPT-4.1-nano' : model === 'gpt-4.1-mini' ? 'GPT-4.1-mini' : model;
+            const modelDisplay = model === 'gpt-4.1-nano' ? 'GPT-4.1-nano' : model === 'gpt-4o-mini' ? 'GPT-4o-mini' : model;
             const attemptText = isSecondAttempt ? `Searching again with ${modelDisplay} for better accuracy...` : `Analyzing plant with ${modelDisplay}...`;
             resultsContainer.innerHTML = `<div class="flex items-center gap-2 text-text-muted"><div class="loader"></div><span>${attemptText}</span></div>`;
 
@@ -3987,7 +3987,7 @@ You are Dr. Greenleaf, a world-renowned botanist and plant ID expert with deep e
             return;
         }
 
-        const modelDisplay = result.model === 'gpt-4.1-nano' ? 'GPT-4.1-nano' : result.model === 'gpt-4.1-mini' ? 'GPT-4.1-mini' : result.model;
+        const modelDisplay = result.model === 'gpt-4.1-nano' ? 'GPT-4.1-nano' : result.model === 'gpt-4o-mini' ? 'GPT-4o-mini' : result.model;
         const attemptNote = result.isSecondAttempt ? ` (Search ${result.searchCount})` : '';
 
         if (result.foundInDatabase) {

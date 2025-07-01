@@ -11,7 +11,7 @@
 // =================================================================================
 
 // Helper function to make OpenAI API calls
-async function callOpenAI(systemPrompt, userPrompt, model = 'gpt-4o-mini') {
+async function callOpenAI(systemPrompt, userPrompt, model = 'gpt-4.1-nano') {
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
         throw new Error('OpenAI API key not configured');
