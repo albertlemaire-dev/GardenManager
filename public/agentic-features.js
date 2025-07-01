@@ -651,7 +651,95 @@ class AgenticGardenFeatures {
     // =================================================================================
 
     getGardenData() {
-        return window.myGarden || [];
+        const gardenData = window.myGarden || [];
+        const activityLog = window.activityLog || [];
+        const combinedPlantDatabase = window.combinedPlantDatabase || [];
+        
+        // Enhance garden data with user notes, observations, and activity history
+        const enhancedGardenData = gardenData.map(instance => {
+            // Get plant details from database
+            const plantDetails = combinedPlantDatabase.find(p => p.id == instance.plantId) || {};
+            
+            // Get relevant activity log entries for this plant
+            const plantActivityLog = activityLog.filter(activity => 
+                activity.instanceId === instance.instanceId
+            ).slice(-10); // Get last 10 activities for context
+            
+            // Extract user notes and observations
+            const userNotes = instance.notes || '';
+            const userObservations = instance.observations || '';
+            const careLog = instance.careLog || [];
+            
+            return {
+                ...instance,
+                plantName: plantDetails.commonName || 'Unknown Plant',
+                scientificName: plantDetails.scientificName || '',
+                category: plantDetails.category || '',
+                description: plantDetails.description || '',
+                userNotes: userNotes,
+                userObservations: userObservations,
+                careLog: careLog,
+                recentActivity: plantActivityLog,
+                plantingAge: this.calculatePlantAge(instance.plantingDate),
+                fullPlantDetails: plantDetails
+            };
+        });
+        
+        return {
+            plants: enhancedGardenData,
+            totalPlants: enhancedGardenData.length,
+            plantCategories: [...new Set(enhancedGardenData.map(p => p.category))],
+            recentActivitySummary: this.getRecentActivitySummary(),
+            gardenLayout: window.gardenLayout || { plants: {}, beds: [] },
+            careSchedule: window.careLog || {},
+            harvestLog: window.harvestLog || []
+        };
+    }
+    
+    calculatePlantAge(plantingDate) {
+        if (!plantingDate) return 0;
+        const planting = new Date(plantingDate);
+        const now = new Date();
+        return Math.floor((now - planting) / (1000 * 60 * 60 * 24)); // days
+    }
+    
+    getRecentActivitySummary() {
+        const activityLog = window.activityLog || [];
+        const recentActivities = activityLog.slice(-20); // Last 20 activities
+        
+        return {
+            totalActivities: recentActivities.length,
+            activities: recentActivities.map(activity => ({
+                date: activity.date,
+                plantInstance: activity.instanceId,
+                description: activity.message || activity.description || '',
+                type: activity.type || 'general'
+            })),
+            summary: this.generateActivitySummary(recentActivities)
+        };
+    }
+    
+    generateActivitySummary(activities) {
+        const summary = {
+            watering: 0,
+            fertilizing: 0,
+            pruning: 0,
+            harvesting: 0,
+            observations: 0,
+            issues: 0
+        };
+        
+        activities.forEach(activity => {
+            const message = (activity.message || activity.description || '').toLowerCase();
+            if (message.includes('water')) summary.watering++;
+            if (message.includes('fertiliz') || message.includes('feed')) summary.fertilizing++;
+            if (message.includes('prun') || message.includes('trim')) summary.pruning++;
+            if (message.includes('harvest')) summary.harvesting++;
+            if (message.includes('observe') || message.includes('note')) summary.observations++;
+            if (message.includes('pest') || message.includes('disease') || message.includes('problem')) summary.issues++;
+        });
+        
+        return summary;
     }
 
     getHealthHistory() {

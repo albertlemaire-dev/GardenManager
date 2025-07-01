@@ -11,7 +11,7 @@
 // =================================================================================
 
 // Helper function to make OpenAI API calls
-async function callOpenAI(systemPrompt, userPrompt, model = 'gpt-4.1-nano') {
+async function callOpenAI(systemPrompt, userPrompt, model = 'gpt-4o-mini') {
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
         throw new Error('OpenAI API key not configured');
@@ -37,7 +37,21 @@ async function callOpenAI(systemPrompt, userPrompt, model = 'gpt-4.1-nano') {
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`OpenAI API error: ${response.status} - ${errorText}`);
+            let errorMessage = `OpenAI API error: ${response.status}`;
+            
+            if (response.status === 429) {
+                errorMessage = 'Rate limit exceeded. Please wait a moment and try again.';
+            } else if (response.status === 401) {
+                errorMessage = 'Invalid API key. Please check your OpenAI API key in settings.';
+            } else if (response.status === 402) {
+                errorMessage = 'Insufficient credits. Please check your OpenAI account billing.';
+            } else if (response.status === 400) {
+                errorMessage = 'Bad request. Please check your input data.';
+            } else if (response.status >= 500) {
+                errorMessage = 'OpenAI server error. Please try again later.';
+            }
+            
+            throw new Error(`${errorMessage} - ${errorText}`);
         }
 
         const result = await response.json();
@@ -56,16 +70,21 @@ async function generateProactiveCareRecommendations(weatherData, plantData, user
     2. INTELLIGENT SCHEDULING: Creating care schedules based on plant needs and conditions
     3. PRIORITY NOTIFICATIONS: Sending timely, actionable notifications with urgency levels
     4. RESOURCE OPTIMIZATION: Balancing water usage, fertilizer application, and energy consumption
+    5. PERSONALIZED CARE: Understanding user notes, observations, and past experiences
     
-    Provide responses that are time-sensitive, actionable, prioritized by urgency, weather-aware, and specific to individual plant needs.
+    IMPORTANT: Always consider the user's notes, activity history, and observations when making recommendations. Reference specific plants by name and acknowledge any issues or successes the user has documented.
     
-    Return your response as clear, human-readable text with specific recommendations, organized by priority level. Use bullet points and clear headings. Be conversational but professional.`;
+    Provide responses that are time-sensitive, actionable, prioritized by urgency, weather-aware, personalized to user's notes, and specific to individual plant needs.
+    
+    Return your response as clear, human-readable text with specific recommendations, organized by priority level. Use bullet points and clear headings. Be conversational but professional. Reference the user's notes and observations when relevant.`;
 
-    const userPrompt = `Analyze current garden conditions and provide care recommendations:
+    const userPrompt = `Analyze current garden conditions and provide personalized care recommendations:
     
     Weather Data: ${JSON.stringify(weatherData, null, 2)}
-    Plant Data: ${JSON.stringify(plantData, null, 2)}
-    User Preferences: ${JSON.stringify(userPreferences, null, 2)}`;
+    Plant Data (includes user notes and observations): ${JSON.stringify(plantData, null, 2)}
+    User Preferences: ${JSON.stringify(userPreferences, null, 2)}
+    
+    Please pay special attention to any user notes, observations, or issues mentioned in the plant data. Incorporate this personal knowledge into your recommendations.`;
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);
@@ -84,15 +103,20 @@ async function analyzeePlantHealth(plantData, healthHistory = []) {
     2. GROWTH TRACKING: Monitoring plant development and identifying anomalies
     3. PREDICTIVE DIAGNOSTICS: Early detection of potential issues before they become critical
     4. TREATMENT RECOMMENDATIONS: Specific, actionable treatment plans with timelines
+    5. PERSONALIZED ANALYSIS: Understanding user observations, notes, and documented symptoms
     
-    Provide systematic analysis with confidence levels, multiple treatment options, prevention strategies, and monitoring schedules.
+    IMPORTANT: Always consider the user's notes, observations, and documented symptoms when analyzing plant health. Reference specific plants by name and acknowledge any concerns or successes the user has noted.
     
-    Return your response as clear, human-readable text. Include an overall health assessment, any issues found, specific treatment recommendations, and preventive measures. Use clear headings and bullet points.`;
+    Provide systematic analysis with confidence levels, multiple treatment options, prevention strategies, monitoring schedules, and personalized attention to user concerns.
+    
+    Return your response as clear, human-readable text. Include an overall health assessment, any issues found, specific treatment recommendations, and preventive measures. Use clear headings and bullet points. Address any specific concerns mentioned in user notes.`;
 
-    const userPrompt = `Analyze plant health status:
+    const userPrompt = `Analyze plant health status with attention to user observations:
     
-    Plant Data: ${JSON.stringify(plantData, null, 2)}
-    Health History: ${JSON.stringify(healthHistory, null, 2)}`;
+    Plant Data (includes user notes and observations): ${JSON.stringify(plantData, null, 2)}
+    Health History: ${JSON.stringify(healthHistory, null, 2)}
+    
+    Please carefully review any user notes, observations, or concerns documented for each plant. Address these specifically in your health analysis and recommendations.`;
 
     try {
         const response = await callOpenAI(systemPrompt, userPrompt);

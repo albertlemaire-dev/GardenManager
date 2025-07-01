@@ -112,22 +112,30 @@ app.post('/api/transcribe-audio', upload.single('audio'), async (req, res) => {
         }
 
         // Create form data for OpenAI API using form-data library
+        const FormData = require('form-data');
         const formData = new FormData();
-        formData.append('file', req.file.buffer, filename);
+        
+        // Convert buffer to stream for proper multipart handling
+        const { Readable } = require('stream');
+        const bufferStream = new Readable();
+        bufferStream.push(req.file.buffer);
+        bufferStream.push(null);
+        
+        formData.append('file', bufferStream, {
+            filename: filename,
+            contentType: contentType
+        });
         formData.append('model', 'whisper-1');
         formData.append('response_format', 'json');
 
-        // Build headers with proper multipart boundary and authorization
-        const openaiHeaders = {
-            'Authorization': `Bearer ${apiKey}`,
-            ...formData.getHeaders()
-        };
-
-        // Call OpenAI Whisper API using fetch with Buffer body
+        // Call OpenAI Whisper API using form-data stream
         const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
             method: 'POST',
-            headers: openaiHeaders,
-            body: formData.getBuffer()
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                ...formData.getHeaders()
+            },
+            body: formData
         });
 
         if (!response.ok) {
@@ -189,7 +197,7 @@ app.post('/api/analyze-transcript', async (req, res) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'gpt-4.1-nano',
+                model: 'gpt-4o-mini',
                 messages: [
                     {
                         role: 'system',
