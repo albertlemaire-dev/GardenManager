@@ -386,12 +386,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button data-action="open-voice-recording" class="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center gap-2 group">
                                 <i data-lucide="mic" class="h-4 w-4 group-hover:scale-110 transition-transform"></i> Voice Notes
                             </button>
+                            <button data-action="open-agent-history" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center gap-2 group">
+                                <i data-lucide="history" class="h-4 w-4 group-hover:scale-110 transition-transform"></i> History
+                            </button>
                             <button data-action="generate-ai-recommendations" class="px-4 py-2 bg-gradient-to-r from-primary to-garden-green text-white text-sm font-semibold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center gap-2 group">
                                 <i data-lucide="sparkles" class="h-4 w-4 group-hover:scale-110 transition-transform"></i> Get Recommendations
                             </button>
                         </div>
                     </div>
-                    <div id="ai-content" class="text-text-muted text-sm bg-white/50 rounded-xl p-4">Click "Get Recommendations" to generate tips or "Voice Notes" to record garden observations.</div>
+                    <div id="ai-content" class="text-text-muted text-sm bg-white/50 rounded-xl p-4">Click "Get Recommendations" to generate tips, "Voice Notes" to record garden observations, or "History" to view past agent results.</div>
                 </div>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -631,7 +634,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentWeekStart: null, // Track current week being viewed
         weeklyData: {} // Store data organized by week
     };
-
     // Chart tracking
     let pollinatorChart = null;
     let chartViewMode = 'stacked';
@@ -1261,7 +1263,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>`;
         }).join('');
     };
-    
     const renderLayoutView = () => {
         const view = mainElements.layoutView;
         view.innerHTML = `
@@ -1884,7 +1885,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tableHTML += `</tbody></table>`;
         heatmapContainer.innerHTML = tableHTML;
     };
-
     const renderHarvestLogView = () => {
         const view = mainElements.harvestLogView;
         view.innerHTML = `
@@ -2372,7 +2372,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     const prompt = `# Garden Assessment Report - ${todayStr}
-
 ## Current Weather Conditions
 ${weatherSummary}
 
@@ -2895,7 +2894,6 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
             }
         }
     };
-
     // --- EVENT HANDLERS ---
     const handleAppClick = (e) => {
         const target = e.target.closest('[data-action]');
@@ -3525,6 +3523,9 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
                         }
                     }, 100);
                 }
+                break;
+            case 'open-agent-history':
+                openAgentHistoryModal();
                 break;
         }
     };
@@ -4410,6 +4411,531 @@ As an expert gardening consultant, analyze the above data and provide 4-6 priori
         openModal(content);
     };
 
+    // --- AGENT HISTORY FUNCTIONALITY ---
+    const openAgentHistoryModal = () => {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50';
+        modal.innerHTML = `
+            <div class="bg-surface rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+                <div class="p-6 border-b border-accent bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                                <i data-lucide="history" class="h-6 w-6"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold">Agent History</h2>
+                                <p class="text-purple-100 text-sm">View and manage your AI agent results by date</p>
+                            </div>
+                        </div>
+                        <button onclick="this.closest('.fixed').remove()" 
+                                class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <i data-lucide="x" class="h-5 w-5"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex-1 flex overflow-hidden">
+                    <!-- Date Navigation Sidebar -->
+                    <div class="w-80 bg-gray-50 border-r border-gray-200 flex flex-col">
+                        <div class="p-4 border-b border-gray-200 bg-white">
+                            <h3 class="font-semibold text-gray-900 mb-3">Browse by Date</h3>
+                            <div class="space-y-2">
+                                <button id="today-filter" class="w-full text-left px-3 py-2 text-sm rounded-lg bg-purple-50 text-purple-700 font-medium">
+                                    Today
+                                </button>
+                                <button id="yesterday-filter" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-gray-100 text-gray-700">
+                                    Yesterday
+                                </button>
+                                <button id="week-filter" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-gray-100 text-gray-700">
+                                    This Week
+                                </button>
+                                <button id="month-filter" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-gray-100 text-gray-700">
+                                    This Month
+                                </button>
+                                <button id="all-filter" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-gray-100 text-gray-700">
+                                    All Time
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 border-b border-gray-200 bg-white">
+                            <h4 class="font-medium text-gray-900 mb-2">Filter by Agent</h4>
+                            <div class="space-y-1" id="agent-filter-list">
+                                <!-- Agent filters will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 overflow-y-auto p-4">
+                            <h4 class="font-medium text-gray-900 mb-3">Available Dates</h4>
+                            <div id="date-list" class="space-y-1">
+                                <!-- Date list will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Content Area -->
+                    <div class="flex-1 flex flex-col overflow-hidden">
+                        <div class="p-4 border-b border-gray-200 bg-white">
+                            <div class="flex items-center justify-between">
+                                <h3 id="selected-date-title" class="text-lg font-semibold text-gray-900">Today's Results</h3>
+                                <div class="flex gap-2">
+                                    <button id="export-results" class="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors">
+                                        <i data-lucide="download" class="h-3 w-3 mr-1 inline"></i>
+                                        Export
+                                    </button>
+                                    <button id="clear-history" class="px-3 py-1 text-sm bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors">
+                                        <i data-lucide="trash-2" class="h-3 w-3 mr-1 inline"></i>
+                                        Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 overflow-y-auto p-6">
+                            <div id="history-results-content">
+                                <!-- Results will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        lucide.createIcons();
+        
+        // Initialize the history view
+        initializeAgentHistory();
+    };
+
+    const initializeAgentHistory = () => {
+        let currentFilter = 'today';
+        let selectedAgents = new Set();
+        
+        // Get all agent results from both storage systems
+        const getAllAgentResults = () => {
+            const results = [];
+            
+            // Get from agenticUI storage (recent_agent_results)
+            try {
+                const recentResults = JSON.parse(localStorage.getItem('recent_agent_results') || '[]');
+                results.push(...recentResults);
+            } catch (error) {
+                console.error('Error loading recent agent results:', error);
+            }
+            
+            // Get from agenticFeatures storage (agentResults_*)
+            const agentTypes = ['proactiveCare', 'healthMonitor', 'harvestOptimizer', 'gardenPlanner', 'environmentalIntelligence'];
+            agentTypes.forEach(agentType => {
+                try {
+                    const agentResults = JSON.parse(localStorage.getItem(`agentResults_${agentType}`) || '[]');
+                    agentResults.forEach(result => {
+                        results.push({
+                            agentId: agentType,
+                            data: result.result,
+                            timestamp: result.timestamp
+                        });
+                    });
+                } catch (error) {
+                    console.error(`Error loading ${agentType} results:`, error);
+                }
+            });
+            
+            // Sort by timestamp (newest first)
+            return results.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        };
+        
+        const filterResults = (results, filter, agents) => {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const yesterday = new Date(today);
+            yesterday.setDate(yesterday.getDate() - 1);
+            const weekAgo = new Date(today);
+            weekAgo.setDate(weekAgo.getDate() - 7);
+            const monthAgo = new Date(today);
+            monthAgo.setMonth(monthAgo.getMonth() - 1);
+            
+            return results.filter(result => {
+                const resultDate = new Date(result.timestamp);
+                
+                // Agent filter
+                if (agents.size > 0 && !agents.has(result.agentId)) {
+                    return false;
+                }
+                
+                // Date filter
+                switch (filter) {
+                    case 'today':
+                        return resultDate >= today;
+                    case 'yesterday':
+                        return resultDate >= yesterday && resultDate < today;
+                    case 'week':
+                        return resultDate >= weekAgo;
+                    case 'month':
+                        return resultDate >= monthAgo;
+                    case 'all':
+                    default:
+                        return true;
+                }
+            });
+        };
+        
+        const populateAgentFilters = () => {
+            const container = document.getElementById('agent-filter-list');
+            const agentNames = {
+                'proactiveCare': 'Proactive Care',
+                'healthMonitor': 'Health Monitor',
+                'harvestOptimizer': 'Harvest Optimizer',
+                'gardenPlanner': 'Garden Planner',
+                'environmentalIntelligence': 'Environmental Intelligence'
+            };
+            
+            const agentColors = {
+                'proactiveCare': 'bg-blue-100 text-blue-700',
+                'healthMonitor': 'bg-green-100 text-green-700',
+                'harvestOptimizer': 'bg-orange-100 text-orange-700',
+                'gardenPlanner': 'bg-purple-100 text-purple-700',
+                'environmentalIntelligence': 'bg-indigo-100 text-indigo-700'
+            };
+            
+            container.innerHTML = Object.entries(agentNames).map(([id, name]) => `
+                <label class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <input type="checkbox" class="agent-filter-checkbox" data-agent="${id}" 
+                           class="w-4 h-4 text-purple-600 rounded focus:ring-purple-500">
+                    <span class="text-xs px-2 py-1 rounded-full ${agentColors[id] || 'bg-gray-100 text-gray-700'}">${name}</span>
+                </label>
+            `).join('');
+            
+            // Add event listeners
+            container.querySelectorAll('.agent-filter-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const agentId = e.target.dataset.agent;
+                    if (e.target.checked) {
+                        selectedAgents.add(agentId);
+                    } else {
+                        selectedAgents.delete(agentId);
+                    }
+                    updateHistoryView();
+                });
+            });
+        };
+        
+        const populateDateList = (results) => {
+            const container = document.getElementById('date-list');
+            const dateMap = new Map();
+            
+            results.forEach(result => {
+                const date = new Date(result.timestamp);
+                const dateKey = date.toDateString();
+                if (!dateMap.has(dateKey)) {
+                    dateMap.set(dateKey, []);
+                }
+                dateMap.get(dateKey).push(result);
+            });
+            
+            const sortedDates = Array.from(dateMap.entries())
+                .sort((a, b) => new Date(b[0]) - new Date(a[0]));
+            
+            container.innerHTML = sortedDates.map(([dateString, dayResults]) => {
+                const date = new Date(dateString);
+                const isToday = date.toDateString() === new Date().toDateString();
+                const isYesterday = date.toDateString() === new Date(Date.now() - 86400000).toDateString();
+                
+                let displayDate = dateString;
+                if (isToday) displayDate = 'Today';
+                else if (isYesterday) displayDate = 'Yesterday';
+                else displayDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                
+                return `
+                    <button class="date-item w-full text-left p-2 rounded-lg hover:bg-gray-100 transition-colors" 
+                            data-date="${dateString}">
+                        <div class="font-medium text-sm text-gray-900">${displayDate}</div>
+                        <div class="text-xs text-gray-500">${dayResults.length} result${dayResults.length !== 1 ? 's' : ''}</div>
+                    </button>
+                `;
+            }).join('');
+            
+            // Add click handlers
+            container.querySelectorAll('.date-item').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const selectedDate = e.currentTarget.dataset.date;
+                    showResultsForDate(selectedDate, results);
+                    
+                    // Update selection styling
+                    container.querySelectorAll('.date-item').forEach(btn => {
+                        btn.classList.remove('bg-purple-50', 'text-purple-700');
+                        btn.classList.add('hover:bg-gray-100');
+                    });
+                    e.currentTarget.classList.add('bg-purple-50', 'text-purple-700');
+                    e.currentTarget.classList.remove('hover:bg-gray-100');
+                });
+            });
+        };
+        
+        const showResultsForDate = (dateString, allResults) => {
+            const container = document.getElementById('history-results-content');
+            const titleElement = document.getElementById('selected-date-title');
+            
+            const targetDate = new Date(dateString);
+            const dayResults = allResults.filter(result => {
+                const resultDate = new Date(result.timestamp);
+                return resultDate.toDateString() === targetDate.toDateString();
+            });
+            
+            // Apply agent filters
+            const filteredResults = selectedAgents.size === 0 ? dayResults : 
+                dayResults.filter(result => selectedAgents.has(result.agentId));
+            
+            // Update title
+            const isToday = targetDate.toDateString() === new Date().toDateString();
+            const isYesterday = targetDate.toDateString() === new Date(Date.now() - 86400000).toDateString();
+            
+            let displayDate = targetDate.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            if (isToday) displayDate = "Today's Results";
+            else if (isYesterday) displayDate = "Yesterday's Results";
+            
+            titleElement.textContent = displayDate;
+            
+            if (filteredResults.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="text-gray-400 mb-4">
+                            <i data-lucide="calendar-x" class="h-16 w-16 mx-auto"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-700 mb-2">No Results Found</h3>
+                        <p class="text-gray-500">No agent results found for this date${selectedAgents.size > 0 ? ' with the selected filters' : ''}.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+            
+            // Group results by agent and time
+            const groupedResults = filteredResults.reduce((groups, result) => {
+                const key = `${result.agentId}_${new Date(result.timestamp).getTime()}`;
+                if (!groups[key]) {
+                    groups[key] = result;
+                }
+                return groups;
+            }, {});
+            
+            const uniqueResults = Object.values(groupedResults);
+            
+            container.innerHTML = uniqueResults.map(result => {
+                return createHistoryResultCard(result);
+            }).join('');
+            
+            lucide.createIcons();
+        };
+        
+        const createHistoryResultCard = (result) => {
+            const agentNames = {
+                'proactiveCare': 'Proactive Care',
+                'healthMonitor': 'Health Monitor',
+                'harvestOptimizer': 'Harvest Optimizer',
+                'gardenPlanner': 'Garden Planner',
+                'environmentalIntelligence': 'Environmental Intelligence'
+            };
+            
+            const agentIcons = {
+                'proactiveCare': 'cloud-sun',
+                'healthMonitor': 'heart-pulse',
+                'harvestOptimizer': 'apple',
+                'gardenPlanner': 'layout-grid',
+                'environmentalIntelligence': 'thermometer'
+            };
+            
+            const agentColors = {
+                'proactiveCare': 'from-blue-500 to-cyan-500',
+                'healthMonitor': 'from-green-500 to-emerald-500',
+                'harvestOptimizer': 'from-orange-500 to-amber-500',
+                'gardenPlanner': 'from-purple-500 to-violet-500',
+                'environmentalIntelligence': 'from-indigo-500 to-blue-500'
+            };
+            
+            const timestamp = new Date(result.timestamp);
+            const timeString = timestamp.toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true 
+            });
+            
+            let summaryContent = '';
+            const data = result.data;
+            
+            if (data && data.recommendations && data.recommendations.length > 0) {
+                summaryContent += `
+                    <div class="mb-3">
+                        <h5 class="text-sm font-medium text-gray-700 mb-2">Key Recommendations:</h5>
+                        <ul class="space-y-1">
+                            ${data.recommendations.slice(0, 2).map(rec => `
+                                <li class="text-sm text-gray-600 flex items-start gap-2">
+                                    <span class="inline-block w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                                    <span>${rec.description || rec.action || rec.treatment || rec}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            if (data && data.urgentTasks && data.urgentTasks.length > 0) {
+                summaryContent += `
+                    <div class="mb-3">
+                        <h5 class="text-sm font-medium text-red-700 mb-2">Urgent Tasks:</h5>
+                        <ul class="space-y-1">
+                            ${data.urgentTasks.slice(0, 2).map(task => `
+                                <li class="text-sm text-red-600 flex items-start gap-2">
+                                    <i data-lucide="alert-triangle" class="h-3 w-3 mt-0.5 flex-shrink-0"></i>
+                                    <span>${task.task || task.description || task}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            if (!summaryContent) {
+                summaryContent = `
+                    <div class="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <p>Agent completed successfully. Click "View Details" for full results.</p>
+                    </div>
+                `;
+            }
+            
+            return `
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 mb-4">
+                    <div class="bg-gradient-to-r ${agentColors[result.agentId] || 'from-gray-500 to-gray-600'} p-4 text-white">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="${agentIcons[result.agentId] || 'brain'}" class="h-5 w-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">${agentNames[result.agentId] || result.agentId}</h4>
+                                    <p class="text-xs opacity-90">${timeString}</p>
+                                </div>
+                            </div>
+                            <button class="view-full-history-result px-3 py-1 bg-white/20 rounded-lg text-sm font-medium hover:bg-white/30 transition-colors"
+                                    data-result='${JSON.stringify(result).replace(/'/g, '&apos;')}'>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4">
+                        ${summaryContent}
+                    </div>
+                </div>
+            `;
+        };
+        
+        const updateHistoryView = () => {
+            const results = getAllAgentResults();
+            const filteredResults = filterResults(results, currentFilter, selectedAgents);
+            
+            populateDateList(filteredResults);
+            
+            // Show today's results by default
+            const today = new Date().toDateString();
+            const todayResults = filteredResults.filter(result => 
+                new Date(result.timestamp).toDateString() === today
+            );
+            
+            if (todayResults.length > 0) {
+                showResultsForDate(today, filteredResults);
+            } else {
+                // Show most recent date with results
+                if (filteredResults.length > 0) {
+                    const mostRecentDate = new Date(filteredResults[0].timestamp).toDateString();
+                    showResultsForDate(mostRecentDate, filteredResults);
+                } else {
+                    showResultsForDate(today, filteredResults);
+                }
+            }
+        };
+        
+        // Initialize filters
+        populateAgentFilters();
+        
+        // Set up date filter buttons
+        const filterButtons = ['today', 'yesterday', 'week', 'month', 'all'];
+        filterButtons.forEach(filter => {
+            const button = document.getElementById(`${filter}-filter`);
+            button?.addEventListener('click', () => {
+                // Update button styles
+                filterButtons.forEach(f => {
+                    const btn = document.getElementById(`${f}-filter`);
+                    btn?.classList.remove('bg-purple-50', 'text-purple-700', 'font-medium');
+                    btn?.classList.add('hover:bg-gray-100', 'text-gray-700');
+                });
+                
+                button.classList.add('bg-purple-50', 'text-purple-700', 'font-medium');
+                button.classList.remove('hover:bg-gray-100', 'text-gray-700');
+                
+                currentFilter = filter;
+                updateHistoryView();
+            });
+        });
+        
+        // Set up action buttons
+        document.getElementById('export-results')?.addEventListener('click', () => {
+            exportAgentHistory();
+        });
+        
+        document.getElementById('clear-history')?.addEventListener('click', () => {
+            clearAgentHistory();
+        });
+        
+        // Set up view details handlers
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('view-full-history-result')) {
+                const resultData = JSON.parse(e.target.getAttribute('data-result'));
+                if (window.agenticUI) {
+                    window.agenticUI.showFullResults(resultData.agentId, resultData.data);
+                }
+            }
+        });
+        
+        // Initial load
+        updateHistoryView();
+    };
+    
+    const exportAgentHistory = () => {
+        // Implementation for exporting history data
+        const results = JSON.parse(localStorage.getItem('recent_agent_results') || '[]');
+        const dataStr = JSON.stringify(results, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = `agent-history-${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+    };
+    
+    const clearAgentHistory = () => {
+        if (confirm('Are you sure you want to clear all agent history? This action cannot be undone.')) {
+            // Clear both storage systems
+            localStorage.removeItem('recent_agent_results');
+            
+            const agentTypes = ['proactiveCare', 'healthMonitor', 'harvestOptimizer', 'gardenPlanner', 'environmentalIntelligence'];
+            agentTypes.forEach(agentType => {
+                localStorage.removeItem(`agentResults_${agentType}`);
+            });
+            
+            // Refresh the history view
+            initializeAgentHistory();
+            
+            alert('Agent history cleared successfully.');
+        }
+    };
+
     const openVoiceRecordingModal = () => {
         // Check if API key is set
         const apiKey = localStorage.getItem('openai_api_key');
@@ -4666,7 +5192,6 @@ ${plantNames.join(', ')}
   "summary": "concise overview of the recording's main points",
   "timestamp": "${new Date().toISOString()}"
 }
-
 ### Quality Standards:
 - Only include plants explicitly mentioned or clearly implied
 - Notes should be specific and actionable, not generic
@@ -5236,7 +5761,6 @@ ${plantNames.join(', ')}
             });
         }
     };
-
     const createPollinatorChart = () => {
         const chartCanvas = document.getElementById('pollinator-visits-chart');
         if (!chartCanvas) return;

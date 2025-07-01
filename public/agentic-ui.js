@@ -682,11 +682,24 @@ class AgenticUI {
                 timestamp: new Date().toISOString()
             };
             
-            // Add to beginning and keep only last 5 results
+            // Add to beginning and keep only last 20 results for better history
             stored.unshift(newResult);
-            const trimmed = stored.slice(0, 5);
+            const trimmed = stored.slice(0, 20);
             
             localStorage.setItem('recent_agent_results', JSON.stringify(trimmed));
+            
+            // Also store in the individual agent format for backward compatibility
+            const agentStorageKey = `agentResults_${agentId}`;
+            const agentResults = JSON.parse(localStorage.getItem(agentStorageKey) || '[]');
+            agentResults.unshift({
+                timestamp: newResult.timestamp,
+                result: result
+            });
+            
+            // Keep only last 10 results per agent
+            const trimmedAgentResults = agentResults.slice(0, 10);
+            localStorage.setItem(agentStorageKey, JSON.stringify(trimmedAgentResults));
+            
         } catch (error) {
             console.error('Error storing agent result:', error);
         }

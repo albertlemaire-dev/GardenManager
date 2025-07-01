@@ -742,19 +742,38 @@ class AgenticGardenFeatures {
     }
 
     storeAgentResult(agentType, result) {
+        const timestamp = new Date().toISOString();
+        
+        // Store in individual agent format
         const storageKey = `agentResults_${agentType}`;
         const results = JSON.parse(localStorage.getItem(storageKey) || '[]');
-        results.push({
-            timestamp: new Date().toISOString(),
+        results.unshift({
+            timestamp: timestamp,
             result
         });
         
         // Keep only last 10 results
         if (results.length > 10) {
-            results.splice(0, results.length - 10);
+            results.pop();
         }
         
         localStorage.setItem(storageKey, JSON.stringify(results));
+        
+        // Also store in unified history format for the new history viewer
+        try {
+            const unifiedResults = JSON.parse(localStorage.getItem('recent_agent_results') || '[]');
+            unifiedResults.unshift({
+                agentId: agentType,
+                data: result,
+                timestamp: timestamp
+            });
+            
+            // Keep only last 20 results in unified storage
+            const trimmed = unifiedResults.slice(0, 20);
+            localStorage.setItem('recent_agent_results', JSON.stringify(trimmed));
+        } catch (error) {
+            console.error('Error storing unified agent result:', error);
+        }
     }
 
     showNotification(type, message) {
